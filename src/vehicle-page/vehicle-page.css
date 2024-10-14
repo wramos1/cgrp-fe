@@ -44,7 +44,7 @@ h1 {
   height: 0;
   border-left: 100vw solid transparent;
   border-right: 0px solid transparent;
-  border-bottom: 50px solid #237397; 
+  border-bottom: 0px solid #237397; 
   position: relative;
   top: 11.5vh; 
   z-index: 0;
@@ -53,4 +53,16 @@ h1 {
 #box {
   fill: #237397;
   margin-top: -5px; 
+}
+
+.card-box{
+  background-color: white;
+  border-radius: 5px;
+  height: 35vh;
+  width: 30vh;
+  margin-left: 10vh;
+  margin-right: 10vh;
+  margin-top: 5vh;
+  margin-bottom: 10vh;
+  box-shadow: 0px 0px 10px black;
 }
