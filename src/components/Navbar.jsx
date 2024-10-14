@@ -31,7 +31,7 @@ const Navbar = () => {
                             </Link>
                         </li>
                         <li className={`nav-item ${isHome ? '' : 'not-home-nav'}`}>
-                            <Link to={'/services'} className='nav-link'>
+                            <Link to={'/vehicles'} className='nav-link'>
                                 VEHICLES
                             </Link>
                         </li>

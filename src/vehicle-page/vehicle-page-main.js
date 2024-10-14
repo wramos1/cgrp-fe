@@ -9,7 +9,7 @@ function VehicleType() {
   return (
     <div>
       <Header />
-      <h1>Vehicle Types</h1>
+      <h1 className='h1-style'>Vehicle Types</h1>
       <Body />
     </div>
   );
