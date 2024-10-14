@@ -1,0 +1,56 @@
+
+.header {
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+
+h1 {
+  margin: 0;
+  font-size: 3rem; 
+  font-stretch: expanded;
+  font-weight: 900;
+  font-family: 'Arial Narrow Bold', sans-serif;
+  color: #000;
+  text-align: center;
+}
+
+.image-container {
+  background-image: url('https://media.discordapp.net/attachments/416069056513179649/1295275792363819048/image_5.png?ex=670e0f15&is=670cbd95&hm=ffd8dea38352f08fca2c9f1d3224a182f037f7f3942ce8a1d8bb7de63701eba0&=&format=webp&quality=lossless&width=2390&height=1325');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 60vh;
+  margin-top: 0;
+  position: relative; 
+}
+
+.car-container {
+  display: flex;
+  justify-content: center; 
+  position: relative;
+}
+
+.lamborghini {
+  width: 75vh;
+  position: relative;
+  top: 25vh; 
+  z-index: 1; 
+}
+
+.triangle-up {
+  width: 0;
+  height: 0;
+  border-left: 100vw solid transparent;
+  border-right: 0px solid transparent;
+  border-bottom: 50px solid #237397; 
+  position: relative;
+  top: 11.5vh; 
+  z-index: 0;
+}
+
+#box {
+  fill: #237397;
+  margin-top: -5px; 
+}
