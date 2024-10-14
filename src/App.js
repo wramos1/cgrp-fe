@@ -1,22 +1,18 @@
-import './App.css';
-import React, { useEffect, useState } from 'react';
-import axiosConfig from './api/axiosConfig';
+import './styles/App.css';
+import React from 'react';
+import { HashRouter, Route, Routes } from 'react-router-dom';
+import Homepage from './pages/Homepage';
+import Navbar from './components/Navbar';
 
 function App() {
-  // const [cars, setCars] = useState([]);
-
-  // const fetch = async () => {
-  //   const response = await axiosConfig.get("/api/v1/cars");
-  //   setCars(response.data);
-  //   console.log(response)
-  // }
-
-  // useEffect(() => {
-  //   fetch();
-  // }, [])
   return (
     <div className="App">
-      hi
+      <HashRouter>
+        <Navbar />
+        <Routes>
+          <Route path='/' element={<Homepage />} />
+        </Routes>
+      </HashRouter>
     </div>
   );
 }
