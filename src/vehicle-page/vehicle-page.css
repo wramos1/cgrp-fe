@@ -42,11 +42,11 @@
 .triangle-up {
   width: 0;
   height: 0;
-  border-left: 100vw solid transparent;
+  border-left: 98.8vw solid transparent;
   border-right: 0px solid transparent;
-  border-bottom: 0px solid #237397; 
+  border-bottom: 50px solid #237397; 
   position: relative;
-  top: 11.5vh; 
+  top: 10.7vh; 
   z-index: 0;
 }
 
