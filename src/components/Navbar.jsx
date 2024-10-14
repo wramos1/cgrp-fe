@@ -11,7 +11,7 @@ const Navbar = () => {
     let isHome = route.pathname === '/';
 
     return (
-        <section className={`navbar-container`}>
+        <section className={`navbar-container ${isHome ? '' : 'not-home-nav'}`}>
             <nav className='navbar'>
                 <div className="logo-container">
                     <Link to={"/"}>
@@ -30,12 +30,12 @@ const Navbar = () => {
                                 HOME
                             </Link>
                         </li>
-                        <li className={`nav-item ${isHome ? '' : 'not-home-nav'}`}>
+                        <li className='nav-item'>
                             <Link to={'/vehicles'} className='nav-link'>
                                 VEHICLES
                             </Link>
                         </li>
-                        <li className={`nav-item ${isHome ? '' : 'not-home-nav'}`}>
+                        <li className='nav-item'>
                             <Link to={'/contact'} className='nav-link'>
                                 ABOUT US
                             </Link>

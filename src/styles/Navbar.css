@@ -7,8 +7,9 @@
     transition: 0.3s all;
 }
 
-.not-home-nav {
-    color: #237397
+.navbar-container.not-home-nav {
+    background-color: white;
+    padding: 0;
 }
 
 .navbar {
@@ -116,4 +117,8 @@
     border-radius: 4px;
     background: #237397;
     box-shadow: 0px 0.3px 0.5px 0px rgba(0, 0, 0, 0.10), 0px 2px 4px 0px rgba(0, 0, 0, 0.20);
+}
+
+.not-home-nav .log-in {
+    color: white;
 }
