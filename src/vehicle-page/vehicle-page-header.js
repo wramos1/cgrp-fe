@@ -1,14 +1,17 @@
 import React from 'react';
 import './vehicle-page.css';
+import lambo from '../images/lambo.png'
+import background from '../images/background.png'
 
 const Header = () => {
   return (
     <div className="header">
       <div className="image-container">
+        <br></br><br></br><br></br><br></br><br></br>
         <h1 className='h1-style'>READY. SET. GO</h1>
         <div className="car-container">
           <img
-            src='https://media.discordapp.net/attachments/416069056513179649/1295270631499370526/pngimg.com_-_lamborghini_PNG102907_1.png?ex=670e0a47&is=670cb8c7&hm=d6a7ea9617a71521228ad2f70973569643efe8c86d47274ad75cfc8672389674&=&format=webp&quality=lossless&width=2047&height=885'
+            src={lambo}
             className="lamborghini"
           />
         </div>
