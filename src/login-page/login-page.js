@@ -1,6 +1,7 @@
 import './login-page.css';
 import React from 'react';
 import login from '../images/login.png'
+import { Link } from 'react-router-dom';
 
 function Login() {
   return (
@@ -14,7 +15,7 @@ function Login() {
             <input type="text" id="username" name="username"/><br/>
             <label for="pwd">Password:</label><br/>
             <input type="password" id="pwd" name="pwd" /><br/>
-            <label for="account">No account? Create one!</label><br/><br/>
+            <p id='account'>No account? <Link to={'/signup'} >Create one!</Link></p>
             <input type="submit" value="LOG IN" className="button"/>
           </form>
         </div>

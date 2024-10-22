@@ -16,7 +16,8 @@ function Signup() {
             <input type="text" id="email" name="email"/><br/>
             <label for="pwd">Password:</label><br/>
             <input type="password" id="pwd" name="pwd" /><br/>
-            <label for="account">No account? Create one!</label><br/><br/>
+            <label for="confirmpwd">Confirm Password:</label><br/>
+            <input type="password" id="confirmpwd" name="confirmpwd" /><br/>
             <input type="submit" value="REGISTER" className="button"/>
           </form>
         </div>
