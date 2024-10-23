@@ -11,6 +11,7 @@ const FindVehicles = () => {
         try {
             const response = await axiosConfig.get("/home/vehicles");
             setVehicles(response.data);
+            console.log(response)
         } catch (error) {
             console.error(error)
         } finally {
@@ -25,7 +26,8 @@ const FindVehicles = () => {
         <div id='vehicle-list-section'>
             {
                 loading ?
-                    <div className="spinner"></div> :
+                    <div className="spinner"></div>
+                    :
                     <div className="vehicle-list-container">
                         <VehicleList vehicles={vehicles} />
                     </div>

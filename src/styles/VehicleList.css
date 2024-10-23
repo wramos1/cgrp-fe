@@ -3,21 +3,25 @@
 }
 
 .vehicle-list-container {
-    padding: 10px;
+    padding: 10px 20px;
 }
 
 .vehicle-list {
     display: grid;
-    grid-gap: 10px;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-gap: 40px;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
 }
 
 .vehicle-preview-card {
+    min-height: 300px;
+    height: 400px;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     flex-direction: column;
     align-items: center;
     border-radius: 5px;
+    transition: 1s;
+    border: 1px solid;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 }
 

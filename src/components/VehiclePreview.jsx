@@ -1,3 +1,6 @@
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom';
+
 const VehiclePreview = ({ vehicle }) => {
     return (
         <div className='vehicle-preview-card'>
@@ -5,10 +8,11 @@ const VehiclePreview = ({ vehicle }) => {
                 <h1>{vehicle.year} {vehicle.make}</h1>
             </div>
             <div className='vehicle-img-preview'>
-                <img src="https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?cs=srgb&dl=pexels-mikebirdy-170811.jpg&fm=jpg" alt="" />
+                <img src="https://pngimg.com/d/mercedes_PNG1879.png" alt="" />
             </div>
             <div className="vehicle-description">
                 <p>This car is cool</p>
+                <Link to={{ pathname: `/vehicle/${vehicle.make}` }} state={vehicle}>View Car Details</Link>
             </div>
         </div>
     );
