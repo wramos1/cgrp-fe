@@ -6,6 +6,8 @@ import Navbar from './components/Navbar';
 import VehicleType from './vehicle-page/vehicle-page-main';
 import Login from './login-page/login-page'
 import Signup from './login-page/sign-up'
+import FindVehicles from './pages/FindVehicles';
+import IndividualCarPage from './pages/IndividualCarPage';
 
 function App() {
 
@@ -18,6 +20,8 @@ function App() {
           <Route path='/vehicles' element={<VehicleType />} />
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Signup />} />
+          <Route path='/find-vehicles' element={<FindVehicles />} />
+          <Route path='/vehicle/:id' element={<IndividualCarPage />} />
         </Routes >
       </HashRouter >
     </div >

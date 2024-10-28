@@ -11,7 +11,7 @@ const FindVehicles = () => {
         try {
             const response = await axiosConfig.get("/home/vehicles");
             setVehicles(response.data);
-            console.log(response)
+            console.log(response.data)
         } catch (error) {
             console.error(error)
         } finally {
