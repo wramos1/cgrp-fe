@@ -1,32 +1,26 @@
-import './App.css';
-import React, { useEffect, useState } from 'react';
-import axiosConfig from './api/axiosConfig';
+import './styles/App.css';
+import React from 'react';
+import { HashRouter, Route, Routes } from 'react-router-dom';
+import Homepage from './pages/Homepage';
+import Navbar from './components/Navbar';
+import VehicleType from './vehicle-page/vehicle-page-main';
+import IndividualCarPage from './pages/IndividualCarPage';
+import VehicleList from './components/VehicleList';
+import FindVehicles from './pages/FindVehicles';
 
 function App() {
-  const [cars, setCars] = useState([]);
 
-  const fetch = async () => {
-    const response = await axiosConfig.get("/api/v1/cars");
-    setCars(response.data);
-    console.log(response)
-  }
-
-  useEffect(() => {
-    fetch();
-  }, [])
   return (
     <div className="App">
-      {cars.map((i, idx) => {
-        return (
-          <div key={idx}>
-            <h1>{i.year}</h1>
-            {i.make}
-            {i.reviewIds.length ? i.reviewIds.map((i) => {
-              return <li>{i.body}</li>
-            }) : null}
-          </div>
-        )
-      })}
+      <HashRouter>
+        <Navbar />
+        <Routes>
+          <Route path='/' element={<Homepage />} />
+          <Route path='/vehicles' element={<VehicleType />} />
+          <Route path='/find-vehicles' element={<FindVehicles />} />
+          <Route path='/vehicle/:id' element={<IndividualCarPage />} />
+        </Routes>
+      </HashRouter>
     </div>
   );
 }

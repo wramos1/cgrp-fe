@@ -1,0 +1,48 @@
+#home {
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(to right,
+            #237397 0%,
+            #237397 72%,
+            white 72%,
+            white 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 81%;
+    padding-top: 40px;
+}
+
+.call-to-action {
+    color: white;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    font-size: 2.75em;
+    gap: 10px;
+    padding: 0 0 60px 20px;
+}
+
+.call-to-action h1 {
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    margin: 0;
+    margin-left: 20px;
+    letter-spacing: 2px;
+}
+
+.call-to-action h1:nth-of-type(2) {
+    padding-left: 25px;
+}
+
+.call-to-action h1:nth-of-type(3) {
+    padding-left: 50px;
+}
