@@ -26,12 +26,12 @@
 }
 
 .vehicle-img-preview {
-    width: 250px;
-    height: 200px;
+    width: 300px;
+    height: 250px;
 }
 
 .vehicle-img-preview img {
-    object-fit: fill;
+    object-fit: contain;
     width: 100%;
     height: 100%;
 }
