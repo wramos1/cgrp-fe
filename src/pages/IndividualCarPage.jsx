@@ -8,6 +8,9 @@ const IndividualCarPage = () => {
     return (
         <div id='individual-car-page-section'>
             {vehicle.make}
+            <div className='vehicle-img-preview'>
+                <img src={vehicle.vehicleImageHostingURL} alt="" />
+            </div>
         </div>
     );
 }

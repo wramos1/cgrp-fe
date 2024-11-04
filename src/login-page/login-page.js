@@ -1,12 +1,14 @@
 import './login-page.css';
 import React, { useState } from 'react';
 import loginBackground from '../images/login.png'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axiosConfig from '../api/axiosConfig';
 
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+
+  const navigate = useNavigate();
 
   const loginUser = async (e) => {
     e.preventDefault();
@@ -19,14 +21,30 @@ function Login() {
     formData.append('username', username);
     formData.append('password', password);
 
+    try {
+      const result = await axiosConfig.post('/login', formData, {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      })
+      console.log('Login successful', result.data)
+      alert('Success');
+      navigate('/')
 
-    const result = await axiosConfig.post('/login', formData);
+    } catch (error) {
+      if (error.response) {
+        if (error.response.status === 401) {
+          alert('Authentication failed. Please check your credentials.')
+        }
+        else {
+          console.error('Error', error.message)
+        }
+      }
+    }
 
 
     setUsername('');
     setPassword('');
-
-    console.log(result)
   }
 
   return (
@@ -46,7 +64,7 @@ function Login() {
               Password:
             </label>
             <br />
-            <input required value={password} id="pwd" name="password" onChange={(e) => setPassword(e.target.value)} />
+            <input required value={password} type='password' id="pwd" name="password" onChange={(e) => setPassword(e.target.value)} />
             <br />
             <p id='account'>
               No account?

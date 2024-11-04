@@ -8,7 +8,7 @@ const VehiclePreview = ({ vehicle }) => {
                 <h1>{vehicle.year} {vehicle.make}</h1>
             </div>
             <div className='vehicle-img-preview'>
-                <img src="https://pngimg.com/d/mercedes_PNG1879.png" alt="" />
+                <img src={vehicle.vehicleImageHostingURL} alt="" />
             </div>
             <div className="vehicle-description">
                 <p>This car is cool</p>
