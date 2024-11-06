@@ -7,7 +7,7 @@ const VehicleList = ({ vehicles }) => {
         return vehicles.map((vehicle) => {
             return (
                 <VehiclePreview
-                    key={vehicle.id}
+                    key={vehicle.customVehicleID}
                     vehicle={vehicle}
                 />
             )
