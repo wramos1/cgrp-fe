@@ -7,20 +7,19 @@ const FindVehicles = () => {
     const [vehicles, setVehicles] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    const fetch = async () => {
+    const fetchVehicles = async () => {
         try {
             const response = await axiosConfig.get("/home/vehicles");
             setVehicles(response.data);
-            console.log(response.data)
         } catch (error) {
-            console.error(error)
+            console.error("Error fetching vehicles:", error);
         } finally {
             setLoading(false);
         }
-    }
+    };
 
     useEffect(() => {
-        fetch();
+        fetchVehicles();
     }, [])
     return (
         <div id='vehicle-list-section'>
