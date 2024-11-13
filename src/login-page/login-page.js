@@ -61,6 +61,8 @@ function Login() {
 
     setUsername('');
     setPassword('');
+
+    console.log(result)
   }
 
   return (
@@ -80,7 +82,7 @@ function Login() {
               Password:
             </label>
             <br />
-            <input required value={password} type='password' id="pwd" name="password" onChange={(e) => setPassword(e.target.value)} />
+            <input required value={password} id="pwd" name="password" onChange={(e) => setPassword(e.target.value)} />
             <br />
             <p id='account'>
               No account?
