@@ -61,8 +61,6 @@ function Login() {
 
     setUsername('');
     setPassword('');
-
-    console.log(result)
   }
 
   return (
