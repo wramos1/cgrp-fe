@@ -78,6 +78,10 @@
     color: rgb(35, 115, 151);
 }
 
+.not-home-nav .log-in:hover {
+    color: white;
+}
+
 .nav-item a:hover {
     color: rgba(255, 255, 255, 0.6);
 }
@@ -96,6 +100,10 @@
     font-family: "Roboto", sans-serif;
 }
 
+.sign-in-btns a:hover {
+    filter: brightness(70%);
+}
+
 .sign-up {
     text-decoration: none;
     color: #237397;
@@ -105,10 +113,6 @@
     align-items: center;
     border-radius: 4px;
     text-shadow: 2px 2px 15px rgba(0, 0, 0, 0.25);
-}
-
-.sign-up:hover {
-    color: #1c5773;
 }
 
 .log-in {
@@ -123,10 +127,88 @@
     box-shadow: 0px 0.3px 0.5px 0px rgba(0, 0, 0, 0.10), 0px 2px 4px 0px rgba(0, 0, 0, 0.20);
 }
 
-.log-in:hover {
-    filter: brightness(70%);
-}
-
 .not-home-nav .log-in {
     color: white;
+}
+
+.logged-in-user {
+    text-decoration: none;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    box-shadow: 0px 0.3px 0.5px 0px rgba(0, 0, 0, 0.10), 0px 2px 4px 0px rgba(0, 0, 0, 0.20);
+    position: relative;
+    border-radius: 3px;
+}
+
+.user-name {
+    font-size: 19px;
+    cursor: pointer;
+    border-radius: 4px;
+    display: flex;
+    gap: 5px;
+    font-weight: 400;
+    align-items: baseline;
+    margin: 0;
+    color: black;
+    padding: 5px 15px;
+}
+
+.user-name:hover {
+    background-color: gainsboro;
+}
+
+.dropdown-user-menu {
+    top: 35px;
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    height: 75px;
+    width: 85px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    background: white;
+    color: black;
+    cursor: pointer;
+    box-shadow: 0px 0.3px 0.5px 0px rgba(0, 0, 0, 0.10), 0px 2px 4px 0px rgba(0, 0, 0, 0.20);
+}
+
+.dropdown-user-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.dropdown-user-menu ul li {
+    font-size: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.dropdown-user-menu ul li:hover {
+    background-color: gainsboro;
+}
+
+.dropdown-user-menu.open {
+    display: flex;
+}
+
+.user-drop-down-icon {
+    transition: 0.35s all;
+}
+
+.user-drop-down-icon.flipped {
+    transform: rotate(180deg);
 }

@@ -1,0 +1,21 @@
+export const featuresMap = {
+    automaticTransmission: "Automatic Transmission",
+    androidAuto: "Android Auto",
+    appleCarPlay: "Apple CarPlay",
+    backupCamera: "Backup Camera",
+    bluetooth: "Bluetooth",
+    keylessEntry: "Keyless Entry",
+    usbCharger: "USB Charger",
+    petFriendly: "Pet Friendly",
+    leatherSeats: "Leather Seats",
+    blindSpotWarning: "Blind Spot Warning",
+    convertible: "Convertible",
+    allWheelDrive: "All-Wheel Drive",
+    heatedSeats: "Heated Seats",
+    cooledSeats: "Cooled Seats",
+    headsUpDisplay: "Heads Up Display",
+    rearWheelDrive: "Rear Wheel Drive",
+    manualTransmission: "Manual Transmission",
+    electric: "Electric",
+    gullwingDoors: "Gullwing Doors"
+};

@@ -1,5 +1,5 @@
 import './login-page.css';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import loginBackground from '../images/login.png'
 import { Link, useNavigate } from 'react-router-dom';
 import axiosConfig from '../api/axiosConfig';
@@ -7,8 +7,18 @@ import axiosConfig from '../api/axiosConfig';
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const user = localStorage.getItem('user');
+    if (user) {
+      alert("Logged in already");
+      navigate('/');
+    }
+
+  }, [navigate])
+
 
   const loginUser = async (e) => {
     e.preventDefault();
@@ -22,12 +32,15 @@ function Login() {
     formData.append('password', password);
 
     try {
+      setLoading(true);
       const result = await axiosConfig.post('/login', formData, {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
       })
+
       console.log('Login successful', result.data)
+      localStorage.setItem('user', username);
       alert('Success');
       navigate('/')
 
@@ -41,6 +54,9 @@ function Login() {
         }
       }
     }
+    finally {
+      setLoading(false);
+    }
 
 
     setUsername('');
@@ -50,17 +66,17 @@ function Login() {
   return (
     <div>
       <div>
-        <img src={loginBackground} className="login-background" />
+        <img src={loginBackground} className="login-background" alt='login-background-img' />
         <div className="bluebox">
           <h2 className="login-text">LOG IN</h2>
           <form className="submit-form" onSubmit={(e) => loginUser(e)}>
-            <label for="username">
+            <label htmlFor="username">
               Username:
             </label>
             <br />
             <input required value={username} type="text" id="username" name="username" onChange={(e) => setUsername(e.target.value)} />
             <br />
-            <label for="pwd">
+            <label htmlFor="pwd">
               Password:
             </label>
             <br />
@@ -70,7 +86,7 @@ function Login() {
               No account?
               <Link to={'/signup'} >Create one!</Link>
             </p>
-            <input type="submit" value="LOG IN" className="button" />
+            <input disabled={loading} type="submit" value="LOG IN" className="button" />
           </form>
         </div>
       </div>

@@ -7,10 +7,19 @@ const IndividualCarPage = () => {
     const vehicle = location.state
     return (
         <div id='individual-car-page-section'>
-            {vehicle.make}
+            <div className="car-main-img">
+                <img src={vehicle.vehicleImageHostingURL} alt="car hero" />
+            </div>
+            <div className="car-content">
+                <h2 className="car-title">
+                    {vehicle.make + " " + vehicle.model + " " + vehicle.year}
+                    <span>{vehicle.color}</span>
+                </h2>
+            </div>
+            {/* {vehicle.make}
             <div className='vehicle-img-preview'>
                 <img src={vehicle.vehicleImageHostingURL} alt="" />
-            </div>
+            </div> */}
         </div>
     );
 }
