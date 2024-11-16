@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './vehicle-page.css';
 import truck from '../images/truck.png';
 import SUV from '../images/SUV.png';
@@ -12,19 +12,6 @@ import axiosConfig from '../api/axiosConfig';
 
 
 const Body = ({}) => {
-  const [vehicles, setVehicles] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  const searchByType = async(vehicleType) => {
-    try {
-      const response = await axiosConfig.get(`/home/typeSearch/${vehicleType}`);
-      setVehicles(response.data);
-  } catch (error) {
-      console.error("Error fetching vehicles:", error);
-  } finally {
-      setLoading(false);
-  }
-  };
 
   return (
     <div>
@@ -32,32 +19,32 @@ const Body = ({}) => {
         <div className="card-box">
           <img src={truck} alt="Truck" />
           <h2>Truck</h2>
-          <button onClick={() => searchByType('Truck')}>View Now</button>
+          <Link to={{ pathname: `/find-vehicles` }} state={'truck'}>View Car Details</Link>
         </div>
         <div className="card-box">
           <img src={SUV} alt="SUV" />
           <h2>SUV</h2>
-          <button onClick={() => searchByType('SUV')}>View Now</button>
+          <Link to={{ pathname: `/find-vehicles` }} state={'SUV'}>View Car Details</Link>
         </div>
         <div className="card-box">
           <img src={sedan} alt="Sedan" />
           <h2>Sedan</h2>
-          <button onClick={() => searchByType('Sedan')}>View Now</button>
+          <Link to={{ pathname: `/find-vehicles` }} state={'sedan'}>View Car Details</Link>
         </div>
         <div className="card-box">
           <img src={coupe} alt="Coupe" />
           <h2>Coupe</h2>
-          <button onClick={() => searchByType('Coupe')}>View Now</button>
+          <Link to={{ pathname: `/find-vehicles` }} state={'coupe'}>View Car Details</Link>
         </div>
         <div className="card-box">
           <img src={luxury} alt="Luxury" />
           <h2>Luxury</h2>
-          <button onClick={() => searchByType('Luxury')}>View Now</button>
+          <Link to={{ pathname: `/find-vehicles` }} state={'luxury'}>View Car Details</Link>
         </div>
         <div className="card-box">
           <img src={classic} alt="Classic" />
           <h2>Classic</h2>
-          <button onClick={() => searchByType('Classic')}>View Now</button>
+          <Link to={{ pathname: `/find-vehicles` }} state={'classic'}>View Car Details</Link>
         </div>
       </div>
     </div>
