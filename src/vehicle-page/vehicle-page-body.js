@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import './vehicle-page.css';
 import truck from '../images/truck.png';
 import SUV from '../images/SUV.png';
@@ -7,14 +7,14 @@ import sedan from '../images/sedan.png';
 import coupe from '../images/coupe.png';
 import luxury from '../images/luxury.png';
 import classic from '../images/classic.png';
-import VehicleList from '../components/VehicleList';
-import axiosConfig from '../api/axiosConfig';
+import SearchBar from '../components/SearchBar';
 
 
 const Body = ({}) => {
 
   return (
     <div>
+      <SearchBar/>
       <div className="card-container">
         <div className="card-box">
           <img src={truck} alt="Truck" />
