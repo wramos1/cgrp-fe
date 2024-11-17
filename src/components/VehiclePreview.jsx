@@ -25,8 +25,8 @@ const VehiclePreview = ({ vehicle }) => {
                 />
             </div>
             <div className="vehicle-description">
-                <p>{vehicle.description}</p>
-                <Link to={{ pathname: `/vehicle/${vehicle.make}` }} state={vehicle}>View Car Details</Link>
+                <p>Only ${vehicle.dailyRentRate} per day!</p>
+                <Link to={{ pathname: `/vehicle/${vehicle.make}` }} state={vehicle}><button>View Car Details</button></Link>
             </div>
         </div>
     );
