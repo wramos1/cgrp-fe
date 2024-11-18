@@ -9,6 +9,7 @@
 }
 
 .back-to-search {
+    z-index: 9;
     position: absolute;
     text-decoration: none;
     color: black;

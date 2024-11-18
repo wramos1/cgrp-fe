@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import '../styles/IndividualCarPage.css';
 import { featuresMap } from '../dataTypes/Features';
 import DateRangePicker from '../components/DateRangePicker';
@@ -7,6 +7,7 @@ import PaymentForm from '../components/PaymentForm';
 import axiosConfig from '../api/axiosConfig'
 
 const IndividualCarPage = () => {
+    const navigate = useNavigate();
 
     const [dateRange, setDateRange] = useState({
         startDate: new Date(),
@@ -41,20 +42,25 @@ const IndividualCarPage = () => {
 
     const reserveCar = async () => {
         try {
-            const result = await axiosConfig.post("/reservations/reserve", {
-                customVehicleId: vehicle.customVehicleID,
-                endDate: formatDate(dateRange.endDate),
-                startDate: formatDate(dateRange.startDate)
-            });
-            console.log({
+            const payload = {
                 customVehicleId: vehicle.customVehicleID,
                 startDate: formatDate(dateRange.startDate),
                 endDate: formatDate(dateRange.endDate)
-            })
-            console.log(result)
+            };
+
+            const result = await axiosConfig.post("/reservations/reserve", payload,
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                });
+
+            alert(result.data)
+            navigate('/profile');
+
 
         } catch (error) {
-            console.log(error)
+            alert(error.response.data);
         }
     }
 
