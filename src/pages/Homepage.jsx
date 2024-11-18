@@ -19,9 +19,9 @@ const Homepage = () => {
                 <div className='hero-car-img-container'>
                     <img src={Hero_Car} alt="hero image of car" />
                 </div>
-            </div>
+            </div >
 
-        </div>
+        </div >
     );
 }
 

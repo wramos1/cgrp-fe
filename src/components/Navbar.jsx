@@ -45,8 +45,8 @@ const Navbar = () => {
                 <div className='nav-menu'>
                     <ul className="nav-list">
                         <li className={`nav-item ${isHome ? '' : 'not-home-nav'}`}>
-                            <Link to={'/'} className='nav-link'>
-                                HOME
+                            <Link to={'/find-vehicles'} className='nav-link'>
+                                SEARCH
                             </Link>
                         </li>
                         <li className='nav-item'>
@@ -75,8 +75,18 @@ const Navbar = () => {
                             </p>
                             <div className={`dropdown-user-menu ${userNavOpened ? 'open' : ''}`}>
                                 <ul>
-                                    <li>View Profile</li>
-                                    <li className='hover:bg-zinc-300 cursor-pointer flex items-center justify-end p-1 gap-2' onClick={() => logOut()}>
+                                    <li onClick={() => {
+                                        setUserNavOpened(!userNavOpened)
+                                        navigate("/profile")
+                                    }
+                                    }>View Profile</li>
+                                    <li
+                                        className='hover:bg-zinc-300 cursor-pointer flex items-center justify-end p-1 gap-2'
+                                        onClick={() => {
+                                            setUserNavOpened(!userNavOpened)
+                                            logOut()
+                                        }}
+                                    >
                                         Log Out
                                     </li>
                                 </ul>

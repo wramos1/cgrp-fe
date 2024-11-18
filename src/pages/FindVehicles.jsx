@@ -10,7 +10,6 @@ const FindVehicles = () => {
     const fetchVehicles = async () => {
         try {
             const response = await axiosConfig.get("/home/vehicles");
-            console.log(response.data);
             setVehicles(response.data);
         } catch (error) {
             console.error("Error fetching vehicles:", error);
@@ -20,8 +19,10 @@ const FindVehicles = () => {
     };
 
     useEffect(() => {
-        fetchVehicles();
-    }, [])
+        if (!vehicles.length) {
+            fetchVehicles();
+        }
+    }, [vehicles])
     return (
         <div id='vehicle-list-section'>
             {

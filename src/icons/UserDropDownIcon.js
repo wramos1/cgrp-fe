@@ -1,4 +1,3 @@
-// UserIcon.js
 import React from 'react';
 
 const UserDropDownIcon = ({ width = '12px', height = '12px', style }) => {
