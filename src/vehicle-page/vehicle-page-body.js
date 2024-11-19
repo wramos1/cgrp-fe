@@ -24,7 +24,7 @@ const Body = ({}) => {
         <div className="card-box">
           <img src={SUV} alt="SUV" />
           <h2>SUV</h2>
-          <Link to={{ pathname: `/find-vehicles` }} state={'SUV'}><button>View Now</button></Link>
+          <Link to={{ pathname: `/find-vehicles` }} state={'suv'}><button>View Now</button></Link>
         </div>
         <div className="card-box">
           <img src={sedan} alt="Sedan" />
