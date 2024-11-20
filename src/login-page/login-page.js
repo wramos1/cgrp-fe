@@ -85,7 +85,7 @@ function Login() {
             <br />
             <p id='account'>
               No account?
-              <Link to={'/signup'} >Create one!</Link>
+              <Link to={'/signup'} > Create one!</Link>
             </p>
             <input disabled={loading} type="submit" value="LOG IN" className="button" />
           </form>
