@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import axiosConfig from '../api/axiosConfig';
+import React from 'react';
 
 import Hero_Car from '../images/porsche.png'
 import '../styles/Homepage.css';
+import SearchBar from '../components/SearchBar';
 
 
 const Homepage = () => {
@@ -19,9 +19,11 @@ const Homepage = () => {
                 <div className='hero-car-img-container'>
                     <img src={Hero_Car} alt="hero image of car" />
                 </div>
-            </div >
-
-        </div >
+            </div>
+            <div>
+                <SearchBar />
+            </div>
+        </div>
     );
 }
 
