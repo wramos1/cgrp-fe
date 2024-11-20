@@ -39,8 +39,9 @@ function Login() {
         },
       })
 
-      console.log('Login successful', result.data)
+      console.log('Login successful', result.data.roles[0].authority)
       localStorage.setItem('user', username);
+      localStorage.setItem('auth', result.data.roles[0].authority)
       alert('Success');
       navigate('/')
 

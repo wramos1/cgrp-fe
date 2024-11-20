@@ -8,6 +8,7 @@ import Login from './login-page/login-page'
 import Signup from './login-page/sign-up'
 import FindVehicles from './pages/FindVehicles';
 import IndividualCarPage from './pages/IndividualCarPage';
+import Profile from './pages/Profile';
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
           <Route path='/signup' element={<Signup />} />
           <Route path='/find-vehicles' element={<FindVehicles />} />
           <Route path='/vehicle/:id' element={<IndividualCarPage />} />
+          <Route path='/profile' element={<Profile />} />
         </Routes >
       </HashRouter >
     </div >

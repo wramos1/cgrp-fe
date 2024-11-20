@@ -13,7 +13,7 @@ const VehiclePreview = ({ vehicle }) => {
     return (
         <div className='vehicle-preview-card'>
             <div className='vehicle-header'>
-                <h1>{vehicle.year} {vehicle.make}</h1>
+                <h1 className="impact">{vehicle.year} {vehicle.make} <h1 className='impact' id="up">{vehicle.model}</h1></h1>
             </div>
             <div className='vehicle-img-preview'>
                 <img
@@ -25,8 +25,8 @@ const VehiclePreview = ({ vehicle }) => {
                 />
             </div>
             <div className="vehicle-description">
-                <p>{vehicle.description}</p>
-                <Link to={{ pathname: `/vehicle/${vehicle.make}` }} state={vehicle}>View Car Details</Link>
+                <p>${vehicle.dailyRentRate} <p id="day">/day</p></p>
+                <Link to={{ pathname: `/vehicle/${vehicle.make}` }} state={vehicle}><button>View Car Details</button></Link>
             </div>
         </div>
     );

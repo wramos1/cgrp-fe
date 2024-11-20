@@ -1,13 +1,32 @@
 #individual-car-page-section {
     margin: 0 15%;
     padding-top: 90px;
+    padding-bottom: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
 
+.back-to-search {
+    z-index: 9;
+    position: absolute;
+    text-decoration: none;
+    color: black;
+    left: 30px;
+    top: 90px;
+    background-color: gainsboro;
+    padding: 10px 8px;
+    border-radius: 5px;
+    transition: 0.5s all;
+}
+
+.back-to-search:hover {
+    background-color: #b1aeae;
+}
+
 .car-main-img {
+    position: relative;
     width: 100%;
     border-radius: 5px;
     display: flex;
@@ -22,12 +41,60 @@
     object-fit: contain;
 }
 
+.is-rented-sign {
+    left: 30px;
+    top: 20px;
+    position: absolute;
+    background-color: rgb(231, 227, 227);
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.is-rented-sign p {
+    display: inline;
+    color: red;
+    margin: 0;
+    padding-left: 5px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.dot.available {
+    background-color: green;
+}
+
+.dot.not-available {
+    background-color: red;
+}
+
+.rented-label.available {
+    color: green;
+}
+
+.rented-label.not-available {
+    color: red;
+}
+
 
 .car-content {
     width: 100%;
+    padding-top: 50px;
+    display: flex;
+}
+
+.car-details {
+    display: flex;
+    flex-direction: column;
+    width: 65%;
 }
 
 .car-title {
+    margin-top: 0;
     font-size: 2em;
     font-family: "Inter", sans-serif;
     font-weight: 500;
@@ -38,4 +105,111 @@
     font-size: 20px;
     color: #b1aeae;
     display: block;
+}
+
+.list-of-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: space-between;
+}
+
+.list-of-features>div {
+    display: flex;
+    align-items: center;
+    flex: 0 1 calc(45% - 8px);
+    box-sizing: border-box;
+}
+
+.feature-display {
+    display: flex;
+    gap: 10px;
+}
+
+.feature-display span {
+    font-size: 15px;
+}
+
+.reservation-section {
+    display: flex;
+    flex-direction: column;
+    width: 35%;
+}
+
+.price {
+    color: green;
+    margin-top: 0;
+    font-size: 2em;
+    font-weight: 500;
+}
+
+.price span {
+    padding-left: 1px;
+    font-size: 15px;
+    color: #8a8585;
+    display: block;
+}
+
+.formatted-date-button {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px 0;
+    background-color: gainsboro;
+    padding: 10px 8px;
+    border-radius: 5px;
+}
+
+.formatted-date-button:hover {
+    cursor: pointer;
+    background-color: #c4c1c1;
+}
+
+.dates {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.dates p {
+    display: inline;
+    margin: 0;
+}
+
+.description-section {
+    margin-top: 45px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.description-title {
+    margin: 0;
+}
+
+.description-section p {
+    font-weight: 100;
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+}
+
+.reserve {
+    margin-top: 50px;
+    width: 100%;
+    font-size: 15px;
+    justify-self: flex-start;
+    align-self: flex-start;
+    border: 1px solid var(--main-color);
+    color: var(--main-color);
+    background-color: white;
+    padding: 8px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.5s all;
+}
+
+.reserve:hover {
+    background-color: var(--main-color);
+    color: white;
 }
