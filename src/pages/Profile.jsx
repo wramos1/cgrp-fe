@@ -58,7 +58,7 @@ const ManagerView = () => {
     const fetchMonthlyRevenue = async () => {
         try {
             const fetch = await axiosConfig.get('/admin/monthly-revenue');
-            console.log(fetch)
+            setMonthlyRevenue(fetch.data)
         } catch (error) {
             console.log(error);
         }
@@ -73,6 +73,7 @@ const ManagerView = () => {
         <div>
             <h2>Manager Dashboard</h2>
             <p>Here are your management tools and insights.</p>
+            <p>{monthlyRevenue}</p>
         </div>
     );
 };

@@ -1,3 +1,5 @@
+import '../styles/PaymentForm.css';
+
 const PaymentForm = () => {
     return (
         <div className="payment-form-section">
