@@ -9,6 +9,7 @@ import Signup from './login-page/sign-up'
 import FindVehicles from './pages/FindVehicles';
 import IndividualCarPage from './pages/IndividualCarPage';
 import Profile from './pages/Profile';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
 
@@ -18,10 +19,16 @@ function App() {
         <Navbar />
         <Routes>
           <Route path='/' element={<Homepage />} />
-          <Route path='/vehicles' element={<VehicleType />} />
+          <Route
+            path='/vehicles'
+            element={<ProtectedRoute> <VehicleType /> </ProtectedRoute>}
+          />
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Signup />} />
-          <Route path='/find-vehicles' element={<FindVehicles />} />
+          <Route path='/find-vehicles'
+            element={<ProtectedRoute>
+              <FindVehicles />
+            </ProtectedRoute>} />
           <Route path='/vehicle/:id' element={<IndividualCarPage />} />
           <Route path='/profile' element={<Profile />} />
         </Routes >

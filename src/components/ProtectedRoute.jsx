@@ -1,11 +1,12 @@
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
-const ProtectedRoute = ({ role, children }) => {
-    const [user] = useState({ role: 'manager' })
-    if (user.role !== role) {
-        return <Navigate to={"/unauthorized"} />
+const ProtectedRoute = ({ children }) => {
+    const user = localStorage.getItem('user');
+    console.log(user)
+
+    if (!user) {
+        return <Navigate to="/login" replace />; // Redirect if user not found
     }
-
     return children;
 }
 

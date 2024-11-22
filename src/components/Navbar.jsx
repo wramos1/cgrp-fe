@@ -5,6 +5,7 @@ import SecondaryLogo from '../images/Secondary_Logo.png';
 
 import '../styles/Navbar.css';
 import UserDropDownIcon from '../icons/UserDropDownIcon';
+import axiosConfig from '../api/axiosConfig';
 
 const Navbar = () => {
 
@@ -24,9 +25,16 @@ const Navbar = () => {
         return '';
     }, [user]);
 
-    const logOut = () => {
-        localStorage.removeItem('user');
-        navigate('/');
+    const logOut = async () => {
+        try {
+            const result = await axiosConfig.post('/logout')
+            localStorage.clear();
+            navigate('/');
+            alert(result.data.message)
+
+        } catch (error) {
+            console.log(error)
+        }
     };
 
     return (
@@ -44,19 +52,19 @@ const Navbar = () => {
 
                 <div className='nav-menu'>
                     <ul className="nav-list">
-                        <li className={`nav-item ${isHome ? '' : 'not-home-nav'}`}>
-                            <Link to={'/find-vehicles'} className='nav-link'>
-                                SEARCH
+                        <li className='nav-item'>
+                            <Link to={'/'} className='nav-link'>
+                                HOME
                             </Link>
                         </li>
                         <li className='nav-item'>
                             <Link to={'/vehicles'} className='nav-link'>
-                                VEHICLES
+                                TYPES
                             </Link>
                         </li>
-                        <li className='nav-item'>
-                            <Link to={'/contact'} className='nav-link'>
-                                ABOUT US
+                        <li className={`nav-item ${isHome ? '' : 'not-home-nav'}`}>
+                            <Link to={'/find-vehicles'} className='nav-link'>
+                                SEARCH
                             </Link>
                         </li>
                     </ul>
