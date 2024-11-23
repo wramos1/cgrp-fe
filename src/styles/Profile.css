@@ -1,3 +1,106 @@
 .profile-section {
     padding-top: 60px;
 }
+.h1header{
+    font-family: 'Arial Narrow Bold', sans-serif;
+    color: black;
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    margin: 30px;
+}
+.profile-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff; 
+    padding: 20px;
+}
+
+.profile-page .profile-card {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 20px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 75%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.profile-page .profile-left {
+    text-align: center;
+}
+
+.profile-page .profile-picture {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    object-fit: cover;
+}
+
+.profile-page .profile-name {
+    font-family: 'Arial Narrow Bold', sans-serif;
+    font-size: 1.8rem;
+    color: black;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.profile-page .profile-role {
+    font-family: 'Arial Narrow', sans-serif;
+    font-size: 1.3rem;
+    color: darkslategray;
+    margin-bottom: 20px;
+}
+
+.profile-page .profile-details p {
+    font-family: 'Arial', sans-serif;
+    font-size: 1rem;
+    color: #333;
+    margin: 5px 0;
+}
+
+.profile-page .profile-right {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.profile-page .info-card {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.profile-page .info-card h3 {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.profile-page .info-card p {
+    font-family: 'Arial', sans-serif;
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.5;
+}
+
+.profile-page .revenue {
+    font-family: 'Arial Narrow Bold', sans-serif;
+    color: green !important;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+#increase{
+    color:gray;
+    font-size: .8rem;
+    font-weight: 400;
+    display: inline;
+    margin-left: 10px;
+  }

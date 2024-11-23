@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import '../styles/Profile.css';
 import axiosConfig from "../api/axiosConfig";
+import pfp from "../images/pfp.jpg"
 
 const Profile = () => {
     const [isManager, setIsManager] = useState(false);
@@ -40,7 +41,7 @@ const Profile = () => {
                     :
                     (
                         <div>
-                            <h1>
+                            <h1 className="h1header">
                                 Welcome, {formattedUser}
                             </h1>
                             {isManager ? <ManagerView /> : <UserView />}
@@ -70,11 +71,39 @@ const ManagerView = () => {
     }, [])
 
     return (
-        <div>
-            <h2>Manager Dashboard</h2>
-            <p>Here are your management tools and insights.</p>
-            <p>{monthlyRevenue}</p>
+        <div class="profile-page">
+            <div class="profile-card">
+                <div class="profile-left">
+                    <img src={pfp} alt="Profile Picture" class="profile-picture"></img>
+                    <h2 class="profile-name">Manager Dashboard</h2>
+                    <p class="profile-role">Here are your management tools and insights.</p>
+                    <div class="profile-details">
+                        <p><strong>Title:</strong> CEO</p>
+                        <p><strong>Location:</strong> CSUN</p>
+                    </div>
+                </div>
+                <div class="profile-right">
+                    <div class="info-card">
+                        <h3>Monthly Revenue</h3>
+                        <p class="revenue">${monthlyRevenue}<p id="increase">+24.7% increase</p></p>
+                        
+                    </div>
+                    <div class="info-card">
+                        <h3>Goals</h3>
+                        <p>Optimize team performance and improve customer satisfaction.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Motivations</h3>
+                        <p>Achieving company objectives and fostering innovation.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Concerns</h3>
+                        <p>Managing workload and adapting to market changes.</p>
+                    </div>
+                </div>
+            </div>
         </div>
+
     );
 };
 
