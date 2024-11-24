@@ -20,9 +20,9 @@ const IndividualCarPage = () => {
 
     const displayFeatures = () => {
         return vehicle.vehicleFeatures.map((feat) => {
-            return Object.values(featuresMap).map((features) => {
+            return Object.values(featuresMap).map((features, i) => {
                 return features.type === feat.featureDescription ? (
-                    <div className="feature-display">
+                    <div className="feature-display" key={i}>
                         <features.icon width='20px' height='20px' />
                         <span>{feat.featureDescription}</span>
                     </div>

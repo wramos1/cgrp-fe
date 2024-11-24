@@ -1,0 +1,64 @@
+.payment-form-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.payment-form {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+.payment-label-input {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 5px;
+}
+
+.payment-label-input label {
+    font-size: 15px;
+    font-weight: 400;
+    color: black;
+    font-family: 'Roboto', sans-serif;
+}
+
+.payment-label-input input {
+    box-sizing: border-box;
+    border: 1px solid gray;
+    border-radius: 3px;
+    padding: 8px 10px;
+    font-size: 0.9em;
+    font-family: 'Roboto', sans-serif;
+    width: 100%;
+    margin: 0px 0 0px 0;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.expiry-select {
+    box-sizing: border-box;
+    border: 1px solid gray;
+    border-radius: 3px;
+    padding: 8px 10px;
+    font-size: 0.9em;
+    font-family: 'Roboto', sans-serif;
+    margin: 0px 0 0px 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.payment-label-input:nth-of-type(3) {
+    display: flex;
+    flex-direction: row;
+}
+
+.exp-wrapper {
+    display: flex;
+    position: relative;
+}
+
+.exp-wrapper label {
+    position: absolute;
+}
