@@ -25,7 +25,7 @@
   border: 1px solid #ccc;
   border-radius: 4px;
   margin-right: 8px;
-  background-color: gainsboro;
+  font-family: 'Roboto', sans-serif;
 }
 
 .search-input:focus {
@@ -37,10 +37,9 @@
   font-size: 1rem;
   background-color: #237397;
   border: 2px solid #237397;
-  ;
   color: #fff;
   cursor: pointer;
-  font-family: 'Arial Narrow Bold', sans-serif;
+  font-family: 'Roboto', sans-serif;
   border-radius: 5px;
   transition: background-color 0.3s ease;
 }
