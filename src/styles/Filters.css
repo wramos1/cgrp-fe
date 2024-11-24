@@ -1,22 +1,57 @@
 .filters-section {
     display: flex;
-    flex-direction: column;
     align-items: center;
 }
 
 .filters-title {
-    align-self: flex-start;
+    width: 80px;
     margin: 0;
-    font-size: 1.5em;
+    align-self: baseline;
+    font-size: 1em;
     font-family: "Roboto', sans-serif";
-    font-weight: 400;
+    font-weight: 800;
 }
 
 .filters {
     display: flex;
     width: 100%;
-    justify-content: space-evenly;
-    align-items: center;
+    align-items: end;
+    justify-content: space-around;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.filters-list {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    width: 65%;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.filters-list label {
+    font-weight: 900;
+    padding-bottom: 2px;
+}
+
+.filter-by-keyword {
+    height: inherit;
+    width: 90%;
+}
+
+.keyword-search {
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 0.85em;
+    padding: 10px 5px;
+    box-sizing: border-box;
+    height: 100%;
+}
+
+.keyword-search::placeholder {
+    color: black;
 }
 
 .dropdown-title {
@@ -24,11 +59,11 @@
     font-family: 'Roboto', sans-serif;
     color: black;
     background-color: white;
-    padding: 5px 10px;
+    padding: 10px 10px;
     margin: 0;
     border: 1px solid black;
     cursor: pointer;
-    width: 150px;
+    width: 165px;
     font-weight: 300;
     display: flex;
     justify-content: space-between;
@@ -71,4 +106,28 @@
 
 .checkbox-for-filter input {
     margin-left: 10px;
+}
+
+.checkbox-for-filter label {
+    font-weight: 400;
+}
+
+.search-all-filters-button {
+    margin: 0;
+    box-sizing: border-box;
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #237397;
+    border: 1px solid #237397;
+    color: #fff;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.search-all-filters-button:hover {
+    background-color: #fff;
+    color: #237397;
+    border: 2px solid #237397;
 }

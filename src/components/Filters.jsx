@@ -9,6 +9,17 @@ const Filters = ({ searchAllFilters }) => {
     const [typeFilters, setTypeFilters] = useState([]);
     const [keyword, setKeyword] = useState('');
 
+    const resetFiltering = () => {
+        const checkboxes = document.querySelectorAll('.checkbox-for-filter input[type="checkbox"]');
+        checkboxes.forEach((checkbox) => {
+            checkbox.checked = false;
+        });
+        setMakeFilters([]);
+        setTypeFilters([]);
+        setKeyword('');
+        searchAllFilters();
+    }
+
     const queriesShow = (e) => {
         const previousSelects = document.querySelectorAll('.active');
         const targetElement = e.currentTarget.nextElementSibling;
@@ -80,49 +91,64 @@ const Filters = ({ searchAllFilters }) => {
 
 
     return (
-        <div className='filters-section'>
-            <h3 className='filters-title'>
-                Filters
-            </h3>
-            <div className="filters">
-                <div className="filters-list">
-                    <div className="filter-by-keyword">
-                        <input
-                            autoComplete='off'
-                            name='search'
-                            type="text"
-                            value={keyword}
-                            onChange={(e) => setKeyword(e.target.value)}
-                            placeholder="Search By Keyword"
-                            className="search-input"
-                        />
-                    </div>
-                    <div className='dropdown'>
-                        <h1 className="dropdown-title" onClick={(e) => queriesShow(e)}>
-                            Select Make ({makeFilters.length})
-                            <UserDropDownIcon />
-                        </h1>
-                        <div className="pop-up-dropdown hidden">
-                            {constructMakeDropdown()}
+        <React.Fragment>
+            <div className='filters-section'>
+                <h3 className='filters-title'>
+                    Filter by:
+                </h3>
+                <div className="filters">
+                    <div className="filters-list">
+                        <div className="filter-by-keyword">
+                            <label htmlFor="">Keyword</label>
+                            <input
+                                autoComplete='off'
+                                name='search'
+                                type="text"
+                                value={keyword}
+                                onChange={(e) => setKeyword(e.target.value)}
+                                placeholder="Search..."
+                                className="keyword-search"
+                            />
                         </div>
-                    </div>
-                    <div className='dropdown'>
-                        <h1 className="dropdown-title" onClick={(e) => queriesShow(e)}>
-                            Select Type ({typeFilters.length})
-                            <UserDropDownIcon />
-                        </h1>
-                        <div className="pop-up-dropdown hidden">
-                            {constructTypeDropdown()}
+                        <div className='dropdown'>
+                            <label htmlFor="">Make</label>
+                            <h1 className="dropdown-title" onClick={(e) => queriesShow(e)}>
+                                Select ({makeFilters.length})
+                                <UserDropDownIcon />
+                            </h1>
+                            <div className="pop-up-dropdown hidden">
+                                {constructMakeDropdown()}
+                            </div>
+                        </div>
+                        <div className='dropdown'>
+                            <label htmlFor="">Type</label>
+                            <h1 className="dropdown-title" onClick={(e) => queriesShow(e)}>
+                                Select ({typeFilters.length})
+                                <UserDropDownIcon />
+                            </h1>
+                            <div className="pop-up-dropdown hidden">
+                                {constructTypeDropdown()}
+                            </div>
                         </div>
                     </div>
                     <button className="search-all-filters-button" onClick={() => searchWithFilters()}>
                         Search
                     </button>
-
                 </div>
+
             </div>
 
-        </div>
+            {(makeFilters.length || typeFilters.length || keyword.length) ?
+                (<p
+                    className='reset-filters'
+                    onClick={() => resetFiltering()}
+                >
+                    Reset Filters
+                    <span>
+                        &#x27F2;
+                    </span>
+                </p>) : null}
+        </React.Fragment>
     );
 }
 

@@ -26,8 +26,8 @@ const PaymentForm = () => {
                         <label htmlFor="expire">
                             Expiration Date
                         </label>
-                        <input autoComplete="off" class="exp" id="month" maxLength="2" pattern="[0-9]*" inputMode="numerical" placeholder="MM" type="text" data-pattern-validate />
-                        <input autoComplete="off" class="exp" id="year" maxLength="2" pattern="[0-9]*" inputMode="numerical" placeholder="YY" type="text" data-pattern-validate />
+                        <input autoComplete="off" className="exp" id="month" maxLength="2" pattern="[0-9]*" inputMode="numerical" placeholder="MM" type="text" data-pattern-validate />
+                        <input autoComplete="off" className="exp" id="year" maxLength="2" pattern="[0-9]*" inputMode="numerical" placeholder="YY" type="text" data-pattern-validate />
                     </div>
                     <div>
                         <label htmlFor="cvv">

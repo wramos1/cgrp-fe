@@ -1,13 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import axiosConfig from '../api/axiosConfig';
-import '../styles/VehicleList.css';
+import '../styles/FindVehicles.css';
 import VehicleList from '../components/VehicleList';
 import { useLocation } from 'react-router-dom';
 import Filters from '../components/Filters';
 
 const FindVehicles = () => {
-    const initialLoad = useRef(false)
-
     const location = useLocation();
     const type = location.state
 
@@ -16,43 +14,56 @@ const FindVehicles = () => {
 
     const fetchAllVehicles = async () => {
         try {
+            setLoading(true)
             const response = await axiosConfig.get("/home/vehicles");
             setVehicles(response.data);
+            sessionStorage.setItem("cachedVehicles", JSON.stringify(response.data));
         } catch (error) {
             console.error("Error fetching vehicles:", error);
         } finally {
             setLoading(false);
+            sessionStorage.setItem("initialLoadComplete", "true");
         }
     };
 
     const searchVehicles = async (searchParam) => {
         console.log(searchParam);
-
-        try {
-            const response = await axiosConfig.get(`/home/keyword/${searchParam}`);
-            setVehicles(response.data);
-        } catch (error) {
-            console.error("Error fetching vehicles:", error);
-        } finally {
-            setLoading(false);
+        if (searchParam) {
+            try {
+                setLoading(true);
+                const response = await axiosConfig.get(`/home/keyword/${searchParam}`);
+                setVehicles(response.data);
+                sessionStorage.setItem("cachedVehicles", JSON.stringify(response.data));
+            } catch (error) {
+                console.error("Error fetching vehicles:", error);
+            } finally {
+                setLoading(false);
+            }
         }
-    }
+        else {
+            fetchAllVehicles();
+        }
+    };
 
     useEffect(() => {
-        if (!initialLoad.current) {
-            initialLoad.current = true;
-            if (type) {
-                searchVehicles(type);
-            } else {
-                fetchAllVehicles();
-            }
+        const initialLoadComplete = sessionStorage.getItem("initialLoadComplete") === "true";
+        const cachedVehicles = sessionStorage.getItem("cachedVehicles");
+
+        if (cachedVehicles && initialLoadComplete && !type) {
+            setVehicles(JSON.parse(cachedVehicles));
+            setLoading(false);
         } else if (type) {
             searchVehicles(type);
+        } else {
+            fetchAllVehicles();
         }
-    }, [type])
+    }, [])
+
     return (
         <div id='vehicle-list-section'>
-            <Filters searchAllFilters={(e) => searchVehicles(e)} />
+            <Filters
+                searchAllFilters={(e) => searchVehicles(e)}
+            />
             {
                 loading ?
                     <div className="spinner"></div>

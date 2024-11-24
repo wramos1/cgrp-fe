@@ -29,9 +29,9 @@ const Navbar = () => {
         try {
             const result = await axiosConfig.post('/logout')
             localStorage.clear();
+            sessionStorage.clear();
             navigate('/');
             alert(result.data.message)
-
         } catch (error) {
             console.log(error)
         }
