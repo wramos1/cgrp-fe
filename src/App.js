@@ -10,6 +10,7 @@ import FindVehicles from './pages/FindVehicles';
 import IndividualCarPage from './pages/IndividualCarPage';
 import Profile from './pages/Profile';
 import ProtectedRoute from './components/ProtectedRoute';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
 
@@ -17,21 +18,23 @@ function App() {
     <div className="App">
       <HashRouter>
         <Navbar />
-        <Routes>
-          <Route path='/' element={<Homepage />} />
-          <Route
-            path='/vehicles'
-            element={<ProtectedRoute> <VehicleType /> </ProtectedRoute>}
-          />
-          <Route path='/login' element={<Login />} />
-          <Route path='/signup' element={<Signup />} />
-          <Route path='/find-vehicles'
-            element={<ProtectedRoute>
-              <FindVehicles />
-            </ProtectedRoute>} />
-          <Route path='/vehicle/:id' element={<IndividualCarPage />} />
-          <Route path='/profile' element={<Profile />} />
-        </Routes >
+        <ScrollToTop>
+          <Routes>
+            <Route path='/' element={<Homepage />} />
+            <Route
+              path='/vehicles'
+              element={<ProtectedRoute> <VehicleType /> </ProtectedRoute>}
+            />
+            <Route path='/login' element={<Login />} />
+            <Route path='/signup' element={<Signup />} />
+            <Route path='/find-vehicles'
+              element={<ProtectedRoute>
+                <FindVehicles />
+              </ProtectedRoute>} />
+            <Route path='/vehicle/:id' element={<IndividualCarPage />} />
+            <Route path='/profile' element={<Profile />} />
+          </Routes >
+        </ScrollToTop>
       </HashRouter >
     </div >
   );
