@@ -95,6 +95,7 @@
     color: green !important;
     font-size: 1.5rem;
     font-weight: bold;
+    display: inline;
 }
 
 #increase{
@@ -104,3 +105,12 @@
     display: inline;
     margin-left: 10px;
   }
+
+#star{
+    color:#237397;
+}
+
+#revenue{
+        color: green !important;
+        display: inline;
+}
