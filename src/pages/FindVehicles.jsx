@@ -27,7 +27,6 @@ const FindVehicles = () => {
     };
 
     const searchVehicles = async (searchParam) => {
-        console.log(searchParam);
         if (searchParam) {
             try {
                 setLoading(true);

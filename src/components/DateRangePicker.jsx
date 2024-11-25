@@ -89,7 +89,10 @@ const DateRangePicker = ({ onDatesChange }) => {
 
             <div className="readable-time-frame">
                 <p>
-                    {`Duration: ${getDateDifference(selectionRange.startDate, selectionRange.endDate)}`}
+                    {`Duration: `}
+                    <span>
+                        {getDateDifference(selectionRange.startDate, selectionRange.endDate)}
+                    </span>
                 </p>
             </div>
         </div>
