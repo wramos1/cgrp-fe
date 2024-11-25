@@ -12,11 +12,8 @@ const LeaveReview = ({ customVehicleID }) => {
 
     const handleRatingChange = (rating) => {
         const regex = /^(?:[0-4](?:\.\d{0,1})?|5(?:\.0)?)$/;
-
-
         if (rating === '' || regex.test(rating)) {
             const numericValue = parseFloat(rating);
-
             if (numericValue > 5 || numericValue < 0) {
                 alert('Value must be between 0.0 and 5.0');
             }
@@ -72,6 +69,9 @@ const LeaveReview = ({ customVehicleID }) => {
                 <label htmlFor="review">Review</label>
                 <input className='review-form-body' type="text" name='review' maxLength={200} />
             </div>
+            <button className="submit-review">
+                Submit
+            </button>
         </form>
     );
 }
