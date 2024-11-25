@@ -10,11 +10,11 @@ import classic from '../images/classic.png';
 import SearchBar from '../components/SearchBar';
 
 
-const Body = ({}) => {
+const Body = ({ }) => {
 
   return (
     <div>
-      <SearchBar/>
+      <SearchBar />
       <div className="card-container">
         <div className="card-box">
           <img src={truck} alt="Truck" />

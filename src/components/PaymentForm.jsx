@@ -1,3 +1,4 @@
+import React from 'react'
 import '../styles/PaymentForm.css';
 
 const PaymentForm = () => {
@@ -8,27 +9,33 @@ const PaymentForm = () => {
             </h1>
 
             <form className="payment-form">
-                <div className="name-on-card">
+                <div className="payment-label-input">
                     <label htmlFor="name-on-card">
                         Name on Card
                     </label>
                     <input type="text" name="name-on-card" />
                 </div>
-                <div className="cc-number">
+                <div className="payment-label-input">
                     <label htmlFor="cc-num">
                         Credit Card Number
                     </label>
                     <input type="text" name="cc-num" />
                 </div>
-                <div className="cv-exp">
-                    <label htmlFor="expire">
-                        Expiration Date
-                    </label>
-                    <input type="text" name="expire" />
-                    <label htmlFor="cvv">
-                        CVV
-                    </label>
-                    <input type="text" name="cvv" />
+                <div className="payment-label-input">
+                    <div className="exp-wrapper">
+                        <label htmlFor="expire">
+                            Expiration Date
+                        </label>
+                        <input autoComplete="off" className="exp" id="month" maxLength="2" pattern="[0-9]*" inputMode="numerical" placeholder="MM" type="text" data-pattern-validate />
+                        <input autoComplete="off" className="exp" id="year" maxLength="2" pattern="[0-9]*" inputMode="numerical" placeholder="YY" type="text" data-pattern-validate />
+                    </div>
+                    <div>
+                        <label htmlFor="cvv">
+                            CVV
+                        </label>
+                        <input type="text" name="cvv" />
+                    </div>
+
                 </div>
             </form>
         </div>

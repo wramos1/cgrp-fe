@@ -4,7 +4,7 @@ import '../styles/SearchBar.css';
 
 const SearchBar = () => {
     const [query, setQuery] = useState('');
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
 
     const handleInputChange = (e) => {
         setQuery(e.target.value);
@@ -13,15 +13,16 @@ const SearchBar = () => {
     const handleFormSubmit = (e) => {
         e.preventDefault();
         console.log('Search query:', query);
-    
+
         navigate('/find-vehicles', { state: query });
     };
-    
+
 
     return (
         <div className='box'>
             <form className='searchform' onSubmit={handleFormSubmit}>
                 <input
+                    name='search'
                     type="text"
                     value={query}
                     onChange={handleInputChange}

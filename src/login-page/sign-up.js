@@ -1,6 +1,6 @@
 import './login-page.css';
 import React, { useEffect, useState } from 'react';
-import loginBackground from '../images/login.png'
+import Background from '../images/test-bg.jpg'
 import { Link, useNavigate } from 'react-router-dom';
 import axiosConfig from '../api/axiosConfig';
 
@@ -67,37 +67,58 @@ function Signup() {
   }
 
   return (
-    <div>
-      <div>
-        <img src={loginBackground} className="login-background" alt='login-background-img' />
+    <div className='login-section'>
+      <img src={Background} loading='lazy' className="login-background" alt='login-background-img' />
+      <div className='login-form-container'>
         <div className="bluebox">
           <h2 className="login-text">SIGN UP</h2>
-          <form className="submit-form" onSubmit={(e) => loginUser(e)}>
-          <label htmlFor="email">
-              Email:
-            </label>
-            <br />
-            <input required value={email} type="text" id="email" name="email" onChange={(e) => setEmail(e.target.value)} />
-            <br />
-            <label htmlFor="username">
-              Username:
-            </label>
-            <br />
-            <input required value={username} type="text" id="username" name="username" onChange={(e) => setUsername(e.target.value)} />
-            <br />
-            <label htmlFor="pwd">
-              Password:
-            </label>
-            <br />
-            <input required value={password} id="pwd" name="password" onChange={(e) => setPassword(e.target.value)} />
-            <br />
-            <label htmlFor="confirm">
-              Confirm Password:
-            </label>
-            <br />
-            <input required value={confirmPassword} id="confirm" name="username" onChange={(e) => setconfirmPassword(e.target.value)} />
-            <br />
-            <input disabled={loading} type="submit" value="SIGN UP" className="button" />
+          <form className="login-form" onSubmit={(e) => loginUser(e)}>
+            <div className='login-label-input'>
+              <label htmlFor="email">
+                Email:
+              </label>
+              <input
+                required
+                value={email}
+                type="text"
+                id="email"
+                name="email"
+                onChange={(e) => setEmail(e.target.value)} />
+            </div>
+
+            <div className='login-label-input'>
+              <label htmlFor="username">
+                Username:
+              </label>
+
+              <input required value={username} type="text" id="username" name="username" onChange={(e) => setUsername(e.target.value)} />
+            </div>
+
+            <div className='login-label-input'>
+              <label htmlFor="pwd">
+                Password:
+              </label>
+              <input
+                required
+                value={password}
+                id="pwd"
+                name="password"
+                onChange={(e) => setPassword(e.target.value)} />
+            </div>
+
+            <div className='login-label-input'>
+              <label htmlFor="confirm">
+                Confirm Password:
+              </label>
+              <input required value={confirmPassword} id="confirm" name="username" onChange={(e) => setconfirmPassword(e.target.value)} />
+            </div>
+
+            <input disabled={loading} type="submit" value="Sign Up" className="button" />
+
+            <p className='login-form-catch'>
+              Already have an account? {"  "}
+              <Link to={"/login"}>Login</Link>
+            </p>
           </form>
         </div>
       </div>

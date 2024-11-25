@@ -1,29 +1,32 @@
 #vehicle-list-section {
-    padding-top: 80px;
+    padding: 90px 50px;
 }
 
-.h1-header{
+.h1-header {
     margin: 0;
-    font-size: 2rem; 
+    font-size: 2rem;
     font-stretch: expanded;
     font-weight: 900;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: #000;
     text-align: center;
 }
-.impact{
+
+.impact {
     font-family: 'Impact', 'Charcoal', sans-serif;
     font-weight: 400;
     font-size: 2.2rem;
-    margin:0;
+    margin: 0;
 }
-#up{
+
+#up {
     font-weight: 100;
     font-size: 1.8rem;
-    color:darkslategrey;
+    color: darkslategrey;
 }
+
 .vehicle-list-container {
-    padding: 10px 110px;
+    padding: 10px 20px;
 }
 
 .vehicle-list {
@@ -35,7 +38,7 @@
 .vehicle-preview-card {
     background-color: white;
     border-radius: 10px;
-    width: 300px; 
+    width: 300px;
     box-shadow: 0 0px 8px rgba(0, 0, 0, 0.2), 0px 4px 0px 0px #237397;
     text-align: center;
     padding: 20px;
@@ -63,26 +66,50 @@
     margin-top: 0px;
     border-radius: 5px;
     transition: background-color 0.3s ease;
-  }
+}
 
-  .vehicle-description button:hover {
+.vehicle-description button:hover {
     background-color: #fff;
     color: #237397;
-  }
+}
 
-  .vehicle-description p {
+.vehicle-description p {
     font-family: 'Arial Narrow Bold', sans-serif;
     color: green;
     font-size: 1.3rem;
     font-weight: bold;
     text-align: center;
-    margin:8px;
-  }
+    margin: 8px;
+}
 
-  #day{
-    color:gray;
+#day {
+    color: gray;
     font-size: 1rem;
     font-weight: 400;
     display: inline;
     margin: 0;
-  }
+}
+
+.vehicle-list-results {
+    font-size: 1.25em;
+    margin: 10px 0 10px 5px;
+}
+
+.reset-filters {
+    text-align: center;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 15px;
+    padding: 12px 0;
+    color: #237397;
+    margin: 0 auto;
+    display: table;
+}
+
+.reset-filters span {
+    font-size: 25px;
+}
+
+.reset-filters:hover {
+    filter: brightness(70%);
+}

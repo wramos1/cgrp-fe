@@ -1,9 +1,8 @@
 import './login-page.css';
 import React, { useEffect, useState } from 'react';
-import loginBackground from '../images/login.png'
 import { Link, useNavigate } from 'react-router-dom';
 import axiosConfig from '../api/axiosConfig';
-
+import Background from '../images/test-bg.jpg'
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -65,29 +64,32 @@ function Login() {
   }
 
   return (
-    <div>
-      <div>
-        <img src={loginBackground} className="login-background" alt='login-background-img' />
+    <div className='login-section'>
+      <img src={Background} loading='lazy' className="login-background" alt='login-background-img' />
+      <div className='login-form-container'>
         <div className="bluebox">
           <h2 className="login-text">LOG IN</h2>
-          <form className="submit-form" onSubmit={(e) => loginUser(e)}>
-            <label htmlFor="username">
-              Username:
-            </label>
-            <br />
-            <input required value={username} type="text" id="username" name="username" onChange={(e) => setUsername(e.target.value)} />
-            <br />
-            <label htmlFor="pwd">
-              Password:
-            </label>
-            <br />
-            <input required value={password} id="pwd" name="password" onChange={(e) => setPassword(e.target.value)} />
-            <br />
-            <p id='account'>
-              No account?
-              <Link to={'/signup'} > Create one!</Link>
+          <form className="login-form" onSubmit={(e) => loginUser(e)}>
+            <div className='login-label-input'>
+              <label htmlFor="username">
+                Username:
+              </label>
+              <input required value={username} type="text" id="username" name="username" onChange={(e) => setUsername(e.target.value)} />
+            </div>
+
+            <div className='login-label-input'>
+              <label htmlFor="pwd">
+                Password:
+              </label>
+              <input required value={password} id="pwd" name="password" onChange={(e) => setPassword(e.target.value)} />
+            </div>
+
+            <input disabled={loading} type="submit" value="Log In" className="button" />
+
+            <p className='login-form-catch'>
+              Don't have an account? {"  "}
+              <Link to={'/signup'}>Signup</Link>
             </p>
-            <input disabled={loading} type="submit" value="LOG IN" className="button" />
           </form>
         </div>
       </div>

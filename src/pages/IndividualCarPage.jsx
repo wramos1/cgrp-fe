@@ -2,9 +2,11 @@ import React, { useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import '../styles/IndividualCarPage.css';
 import { featuresMap } from '../dataTypes/Features';
+import Star from '../components/Star.jsx';
 import DateRangePicker from '../components/DateRangePicker';
 import PaymentForm from '../components/PaymentForm';
 import axiosConfig from '../api/axiosConfig'
+import LeaveReview from '../components/LeaveReview.jsx';
 
 const IndividualCarPage = () => {
     const navigate = useNavigate();
@@ -17,12 +19,11 @@ const IndividualCarPage = () => {
     const location = useLocation();
     const vehicle = location.state;
 
-
     const displayFeatures = () => {
         return vehicle.vehicleFeatures.map((feat) => {
-            return Object.values(featuresMap).map((features) => {
+            return Object.values(featuresMap).map((features, i) => {
                 return features.type === feat.featureDescription ? (
-                    <div className="feature-display">
+                    <div className="feature-display" key={i}>
                         <features.icon width='20px' height='20px' />
                         <span>{feat.featureDescription}</span>
                     </div>
@@ -37,7 +38,6 @@ const IndividualCarPage = () => {
 
     const handleDatesChange = (range) => {
         setDateRange(range);
-        console.log('Selected Range:', range);
     };
 
     const reserveCar = async () => {
@@ -58,9 +58,74 @@ const IndividualCarPage = () => {
             alert(result.data)
             navigate('/profile');
 
-
         } catch (error) {
             alert(error.response.data);
+        }
+    };
+
+    const formatReviewDate = (dateString) => {
+        const date = new Date(dateString);
+
+        const options = {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        };
+
+        return date.toLocaleDateString('en-US', options);
+    };
+
+    function generateStars(rating) {
+        const fullStars = Math.floor(rating);
+        const partial = rating % 1;
+        const emptyStars = 5 - fullStars - (partial > 0 ? 1 : 0); // Remaining empty stars
+
+        const stars = [];
+
+        for (let i = 0; i < fullStars; i++) {
+            stars.push(<Star key={`full-${i}`} filled={1} />);
+        }
+        if (partial > 0) {
+            stars.push(<Star key="partial" filled={partial} />);
+        }
+
+        for (let i = 0; i < emptyStars; i++) {
+            stars.push(<Star key={`empty-${i}`} filled={0} />);
+        }
+
+        return stars;
+    }
+
+
+    const displayVehicleReviews = () => {
+        if (vehicle.reviewsOfVehicle) {
+            return vehicle.reviewsOfVehicle.map((review, i) => {
+                return (
+                    <div className='review' key={i}>
+                        <div className="review-rating">
+                            <div className="review-ratings">
+                                <p>
+                                    {generateStars(review.reviewRating)}
+                                </p>
+                            </div>
+
+                            <div className="review-date">
+                                <p>
+                                    {formatReviewDate(review.reviewID.date)}
+                                </p>
+                            </div>
+                        </div>
+                        <div className="review-body">
+                            <p>
+                                "{review.reviewBody}"
+                            </p>
+                        </div>
+                        <h3 className="review-user">
+                            - {review.reviewLeaverUsername}
+                        </h3>
+                    </div>
+                )
+            })
         }
     }
 
@@ -87,12 +152,27 @@ const IndividualCarPage = () => {
                         {displayFeatures()}
                     </div>
                     <div className="description-section">
-                        <h3 className="description-title">
+                        <h2 className="description-title">
                             Description
-                        </h3>
+                        </h2>
                         <p>
                             {vehicle.description}
                         </p>
+                    </div>
+
+                    <h2 className="review-container-title">
+                        Reviews
+                        <span>{vehicle.reviewsOfVehicle.length === 1 ? "1 review" : `${vehicle.reviewsOfVehicle.length} reviews`}</span>
+                    </h2>
+                    <div className="vehicle-review-container">
+                        {displayVehicleReviews()}
+                    </div>
+
+                    <div className="leave-review-container">
+                        <h1 className="leave-review-title">
+                            Leave A Review
+                        </h1>
+                        <LeaveReview customVehicleID={vehicle.customVehicleID} />
                     </div>
 
                 </div>

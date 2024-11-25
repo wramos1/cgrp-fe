@@ -1,0 +1,34 @@
+.stars-container {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    /* Space between stars */
+}
+
+.star {
+    position: relative;
+    font-size: 24px;
+    /* Adjust size as needed */
+    line-height: 1;
+    display: inline-block;
+    width: 1em;
+    /* Ensure consistent spacing */
+    height: 1em;
+}
+
+.star-fill {
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    width: 0;
+    color: var(--main-color);
+    z-index: 1;
+}
+
+.star-empty {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: lightgray;
+}

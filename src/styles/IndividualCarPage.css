@@ -159,11 +159,12 @@
     background-color: gainsboro;
     padding: 10px 8px;
     border-radius: 5px;
+    background-color: #5497c14e;
+    cursor: pointer;
 }
 
 .formatted-date-button:hover {
-    cursor: pointer;
-    background-color: #c4c1c1;
+    filter: brightness(70%);
 }
 
 .dates {
@@ -194,6 +195,11 @@
     margin: 0;
 }
 
+.readable-time-frame span {
+    color: #5497c1;
+    font-weight: 800;
+}
+
 .reserve {
     margin-top: 50px;
     width: 100%;
@@ -212,4 +218,71 @@
 .reserve:hover {
     background-color: var(--main-color);
     color: white;
+}
+
+.review-container-title {
+    margin: 40px 0 10px 0;
+}
+
+.review-container-title span {
+    color: gray;
+    display: block;
+    font-size: 15px;
+}
+
+.vehicle-review-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 20px 20px 0 0;
+    min-height: 50px;
+    max-height: 300px;
+    overflow-y: scroll;
+}
+
+.review {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 20px 10px;
+    border: 1px solid lightgray;
+    background-color: rgba(211, 211, 211, 0.163);
+}
+
+.review-rating {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5px;
+}
+
+.review-rating h1 {
+    margin: 0;
+    color: var(--main-color);
+}
+
+.review-date {
+    color: gray;
+}
+
+.review-rating p {
+    margin: 0 auto;
+    display: inline;
+}
+
+.review-user {
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    font-size: 14px;
+}
+
+.review-body {
+    font-weight: 100;
+    font-size: 17px;
+}
+
+.leave-review-title {
+    font-size: 1.5em;
 }
