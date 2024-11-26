@@ -13,7 +13,7 @@ const UserDropDownIcon = ({ width = '12px', height = '12px', style }) => {
             <path
                 id="Polygon 1"
                 d="M3 3L0.401924 0.75L5.59808 0.75L3 3Z"
-                fill="black"
+                fill="#237397"
             />
         </svg>
     );

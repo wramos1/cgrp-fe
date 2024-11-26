@@ -59,7 +59,7 @@ const Navbar = () => {
                         </li>
                         <li className='nav-item'>
                             <Link to={'/vehicles'} className='nav-link'>
-                                TYPES
+                                VEHICLE TYPES
                             </Link>
                         </li>
                         <li className={`nav-item ${isHome ? '' : 'not-home-nav'}`}>
@@ -79,7 +79,7 @@ const Navbar = () => {
 
                             <p className="user-name" onClick={() => setUserNavOpened(!userNavOpened)}>
                                 {user.charAt(0).toUpperCase() + user.substring(1, user.length).toLowerCase()}
-                                <UserDropDownIcon style={`${userNavOpened ? 'flipped' : ''}`} />
+                                <UserDropDownIcon style={`${userNavOpened ? 'flipped' : ''}`} className="white"/>
                             </p>
                             <div className={`dropdown-user-menu ${userNavOpened ? 'open' : ''}`}>
                                 <ul>
