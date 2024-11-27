@@ -101,6 +101,7 @@ function Signup() {
               <input
                 required
                 value={password}
+                type="password"
                 id="pwd"
                 name="password"
                 onChange={(e) => setPassword(e.target.value)} />
@@ -110,7 +111,7 @@ function Signup() {
               <label htmlFor="confirm">
                 Confirm Password:
               </label>
-              <input required value={confirmPassword} id="confirm" name="username" onChange={(e) => setconfirmPassword(e.target.value)} />
+              <input required value={confirmPassword} type="password"id="confirm" name="username" onChange={(e) => setconfirmPassword(e.target.value)} />
             </div>
 
             <input disabled={loading} type="submit" value="Sign Up" className="button" />

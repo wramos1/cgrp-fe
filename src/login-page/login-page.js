@@ -81,7 +81,7 @@ function Login() {
               <label htmlFor="pwd">
                 Password:
               </label>
-              <input required value={password} id="pwd" name="password" onChange={(e) => setPassword(e.target.value)} />
+              <input required value={password} type="password" id="pwd" name="password" onChange={(e) => setPassword(e.target.value)} />
             </div>
 
             <input disabled={loading} type="submit" value="Log In" className="button" />

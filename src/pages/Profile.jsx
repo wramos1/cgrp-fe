@@ -56,7 +56,7 @@ const Profile = () => {
 
 const ManagerView = () => {
     const [monthlyRevenue, setMonthlyRevenue] = useState(0)
-    const [review, setReview] = useState(0)
+    const [review, setReview] = useState([])
     const [reservations, setReservations] = useState(0)
 
     const fetchMonthlyRevenue = async () => {
@@ -70,7 +70,7 @@ const ManagerView = () => {
 
     const fetchReview = async () => {
         try {
-            const fetch = await axiosConfig.get('/review/getMyReviews');
+            const fetch = await axiosConfig.get('/business/getcurrentmetrics');
             setReview(fetch.data)
         } catch (error) {
             console.log(error);
@@ -103,6 +103,7 @@ const ManagerView = () => {
                         <p><strong>Title:</strong> CEO</p>
                         <p><strong>Location:</strong> CSUN</p>
                         <p><strong>Monthly Revenue:</strong><p class="revenue"> ${monthlyRevenue}</p></p>
+                        <p><strong>Lifetime Revenue:</strong><p class="revenue"> ${review.totalRentalRevenue}</p></p>
                     </div>
                 </div>
                 <div class="profile-right">
@@ -121,26 +122,26 @@ const ManagerView = () => {
                     <p>No reservations.</p>
                 )}
                     </div>
-                    <div class="info-card">
-                        <h3 class="profile-name">All Current Reviews</h3>
-                        {review.length > 0 ? (
-                            review.map((review) => (
-                                <div key={review.reviewID}>
-                                    <p>
-                                        <strong>Rating: </strong> 
-                                        {[...Array(review.reviewRating)].map((_, index) => (
-                                            <span key={index} id="star">&#9733;</span> // Unicode for filled star
-                                        ))}
-                                        {[...Array(5 - review.reviewRating)].map((_, index) => (
-                                            <span key={index} id="star">&#9734;</span> // Unicode for empty star
-                                        ))}
-                                    </p>
-                                    <p><strong>Message:</strong> "{review.reviewBody}"</p>
-                                    <br></br>
+                    <div className="info-card">
+                        <h3 className="profile-name">Low-Rated Reviews</h3>
+                        {review.lowRatedReviewsToAddress && review.lowRatedReviewsToAddress.length > 0 ? (
+                            review.lowRatedReviewsToAddress.map((lowRatedReview) => (
+                                <div key={lowRatedReview.customReviewID} className="review-card">
+                                    <p><strong>Rating: </strong>
+                                     {[...Array(lowRatedReview.reviewRating)].map((_, index) => (
+                                    <span key={index} id="star">&#9733;</span> // Unicode for filled star
+                                ))}
+                                {[...Array(5 - lowRatedReview.reviewRating)].map((_, index) => (
+                                    <span key={index} id="star">&#9734;</span> // Unicode for empty star
+                                ))}</p>
+                                    <p><strong>Message:</strong> "{lowRatedReview.reviewBody}"</p>
+                                    <p><strong>Left By:</strong> {lowRatedReview.reviewLeaverUsername}</p>
+                                    <p><strong>Date:</strong> {new Date(lowRatedReview.reviewID.date).toLocaleDateString()}</p>
+                                    <br />
                                 </div>
                             ))
                         ) : (
-                            <p>No reviews available.</p>
+                            <p>No low-rated reviews available.</p>
                         )}
                     </div>
 
