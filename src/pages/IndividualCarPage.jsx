@@ -30,22 +30,22 @@ const IndividualCarPage = () => {
     const location = useLocation();
     const vehicleID = location.state;
 
-    const fetchVehicle = async () => {
-        try {
-            setLoading(true);
-            await axiosConfig.get(`/home/${vehicleID}`)
-                .then((res) => setVehicle(res.data))
-        } catch (error) {
-            console.log(error)
-        }
-        finally {
-            setLoading(false);
-        }
-    };
 
     useEffect(() => {
+        const fetchVehicle = async () => {
+            try {
+                setLoading(true);
+                await axiosConfig.get(`/home/${vehicleID}`)
+                    .then((res) => setVehicle(res.data))
+            } catch (error) {
+                console.log(error)
+            }
+            finally {
+                setLoading(false);
+            }
+        };
         fetchVehicle();
-    }, [])
+    }, [vehicleID])
 
 
 
