@@ -64,4 +64,10 @@
     font-family: 'Roboto', sans-serif;
     cursor: pointer;
     font-size: 15px;
+    transition: 1s all;
+}
+
+.submit-review:hover {
+    background-color: var(--main-color);
+    color: white;
 }
