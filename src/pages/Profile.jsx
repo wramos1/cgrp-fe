@@ -150,7 +150,7 @@ const ManagerView = () => {
                             review.lowRatedReviewsToAddress.map((lowRatedReview) => (
                                 <div key={lowRatedReview.customReviewID} className="review-card">
                                     <p><strong>Rating: </strong>
-                                        {generateStars(review.reviewRating)}
+                                        {generateStars(lowRatedReview.reviewRating)}
                                     </p>
                                     <p><strong>Message:</strong> "{lowRatedReview.reviewBody}"</p>
                                     <p><strong>Left By:</strong> {lowRatedReview.reviewLeaverUsername}</p>
