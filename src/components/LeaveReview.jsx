@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import axiosConfig from '../api/axiosConfig';
 import { useNavigate } from 'react-router-dom';
 import '../styles/LeaveReview.css';
+import { toast } from 'react-toastify';
 
 const LeaveReview = ({ customVehicleID }) => {
 
@@ -15,7 +16,7 @@ const LeaveReview = ({ customVehicleID }) => {
         if (rating === '' || regex.test(rating)) {
             const numericValue = parseFloat(rating);
             if (numericValue > 5 || numericValue < 0) {
-                alert('Value must be between 0.0 and 5.0');
+                toast.error('Value must be between 0.0 and 5.0');
             }
             setReviewRating(rating)
         }
@@ -24,7 +25,7 @@ const LeaveReview = ({ customVehicleID }) => {
     const leaveReview = async (e) => {
         e.preventDefault();
         if (reviewBody.trim() === '') {
-            alert("Review body is required");
+            toast.error("Review body is required");
             return;
         }
 
@@ -43,7 +44,7 @@ const LeaveReview = ({ customVehicleID }) => {
             })
             setReviewBody('')
             setReviewRating('')
-            alert('Thank you for leaving us a review!');
+            toast.success('Thank you for leaving us a review!');
             navigate('/profile');
 
         } catch (error) {

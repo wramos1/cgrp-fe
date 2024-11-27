@@ -7,6 +7,7 @@ import DateRangePicker from '../components/DateRangePicker';
 import PaymentForm from '../components/PaymentForm';
 import axiosConfig from '../api/axiosConfig'
 import LeaveReview from '../components/LeaveReview.jsx';
+import { toast } from 'react-toastify';
 
 const IndividualCarPage = () => {
     const [loading, setLoading] = useState(true);
@@ -81,7 +82,7 @@ const IndividualCarPage = () => {
 
     const reserveCar = async () => {
         if (paymentCard.cardNumber.trim() === '' || paymentCard.cvv.trim() === '' || paymentCard.expiryYear === '' || paymentCard.expiryMonth === '' || paymentCard.nameOnCard === '') {
-            alert('Please input all required fields');
+            toast.warn('Please input all required fields');
             return;
         }
 
@@ -107,11 +108,11 @@ const IndividualCarPage = () => {
                     }
                 });
 
-            alert(result.data)
+            toast.success(result.data)
             navigate('/profile');
 
         } catch (error) {
-            alert(error.response.data);
+            toast.error(error.response.data);
         }
     };
 

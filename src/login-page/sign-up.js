@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Background from '../images/test-bg.jpg'
 import { Link, useNavigate } from 'react-router-dom';
 import axiosConfig from '../api/axiosConfig';
+import { toast } from 'react-toastify';
 
 function Signup() {
   const [email, setEmail] = useState('');
@@ -15,7 +16,6 @@ function Signup() {
   useEffect(() => {
     const user = localStorage.getItem('user');
     if (user) {
-      alert("Logged in already");
       navigate('/');
     }
 
@@ -25,7 +25,7 @@ function Signup() {
   const loginUser = async (e) => {
     e.preventDefault();
     if (username.trim() === '' || password.trim() === '') {
-      alert("Username is required");
+      toast.error("Username is required");
       return;
     }
 
@@ -43,13 +43,13 @@ function Signup() {
           'Content-Type': 'application/json',
         },
       })
-      alert('Success');
+      toast.success('Success');
       navigate('/login');
 
     } catch (error) {
       if (error.response) {
         if (error.response.status === 401) {
-          alert('Authentication failed. Please check your credentials.')
+          toast.error('Authentication failed. Please check your credentials.')
         }
         else {
           console.error('Error', error.message)

@@ -6,6 +6,7 @@ import SecondaryLogo from '../images/Secondary_Logo.png';
 import '../styles/Navbar.css';
 import UserDropDownIcon from '../icons/UserDropDownIcon';
 import axiosConfig from '../api/axiosConfig';
+import { toast } from 'react-toastify';
 
 const Navbar = () => {
 
@@ -31,7 +32,7 @@ const Navbar = () => {
             localStorage.clear();
             sessionStorage.clear();
             navigate('/');
-            alert(result.data.message)
+            toast.success(result.data.message)
         } catch (error) {
             console.log(error)
         }
