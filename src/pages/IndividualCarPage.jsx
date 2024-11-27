@@ -11,12 +11,20 @@ import LeaveReview from '../components/LeaveReview.jsx';
 const IndividualCarPage = () => {
     const [loading, setLoading] = useState(true);
     const [vehicle, setVehicle] = useState(null);
-    const navigate = useNavigate();
     const [dateRange, setDateRange] = useState({
         startDate: new Date(),
         endDate: new Date(),
     });
 
+    const [paymentCard, setPaymentCard] = useState({
+        cardNumber: "",
+        cvv: "",
+        expiryMonth: "",
+        expiryYear: "",
+        nameOnCard: ""
+    })
+
+    const navigate = useNavigate();
 
     const location = useLocation();
     const vehicleID = location.state;
@@ -61,12 +69,35 @@ const IndividualCarPage = () => {
         setDateRange(range);
     };
 
+    const generateExpiryDate = (expiryMonth, expiryYear) => {
+        const month = expiryMonth.padStart(2, '0');
+        const year = `20${expiryYear}`;
+        const day = "02";
+        const expiryDate = `${year}-${month}-${day}`;
+
+        return expiryDate;
+    };
+
+
     const reserveCar = async () => {
+        if (paymentCard.cardNumber.trim() === '' || paymentCard.cvv.trim() === '' || paymentCard.expiryYear === '' || paymentCard.expiryMonth === '' || paymentCard.nameOnCard === '') {
+            alert('Please input all required fields');
+            return;
+        }
+
         try {
+            const expirationDate = generateExpiryDate(paymentCard.expiryMonth, paymentCard.expiryYear);
+
             const payload = {
                 customVehicleId: vehicle.customVehicleID,
                 startDate: formatDate(dateRange.startDate),
-                endDate: formatDate(dateRange.endDate)
+                endDate: formatDate(dateRange.endDate),
+                userCard: {
+                    cardNumber: paymentCard.cardNumber,
+                    cvv: Number(paymentCard.cvv),
+                    expirationDate,
+                    nameOnCard: paymentCard.nameOnCard
+                }
             };
 
             const result = await axiosConfig.post("/reservations/reserve", payload,
@@ -204,11 +235,11 @@ const IndividualCarPage = () => {
 
                             <div className="reservation-section">
                                 <h2 className="price">
-                                    ${vehicle.dailyRentRate}
+                                    ${Number(vehicle.dailyRentRate).toFixed(2)}
                                     <span>Daily Rent Price</span>
                                 </h2>
                                 <DateRangePicker onDatesChange={handleDatesChange} />
-                                <PaymentForm />
+                                <PaymentForm setPaymentCard={setPaymentCard} paymentCard={paymentCard} />
                                 <button className="reserve" onClick={() => reserveCar()}>
                                     Reserve
                                 </button>

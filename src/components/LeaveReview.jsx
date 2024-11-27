@@ -41,11 +41,10 @@ const LeaveReview = ({ customVehicleID }) => {
                     'Content-Type': 'application/json',
                 },
             })
-            console.log(result);
             setReviewBody('')
             setReviewRating('')
             alert('Thank you for leaving us a review!');
-            // navigate('/profile');
+            navigate('/profile');
 
         } catch (error) {
             console.error('Error', error.message)

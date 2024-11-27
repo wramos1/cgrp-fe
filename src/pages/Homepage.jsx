@@ -17,7 +17,7 @@ const Homepage = () => {
                     <h1>GO.</h1>
                 </div>
                 <div className='hero-car-img-container'>
-                    <img src={Hero_Car} alt="hero image of car" />
+                    <img src={Hero_Car} alt="hero of car" />
                 </div>
             </div>
             <SearchBar />

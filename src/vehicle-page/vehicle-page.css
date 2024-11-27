@@ -1,9 +1,3 @@
-#adjust{
-  transform: translateY(-80%);
-  margin-bottom: 50px;
-}
-
-
 .header {
   text-align: center;
   padding: 0;
@@ -13,13 +7,13 @@
 
 .h1-style {
   margin: 0;
-  font-size: 3rem; 
+  font-size: 3rem;
   font-stretch: expanded;
   font-weight: 900;
   font-family: 'Arial Narrow Bold', sans-serif;
   color: #000;
   text-align: center;
-  
+
 }
 
 .image-container {
@@ -30,20 +24,20 @@
   width: 100%;
   height: 60vh;
   margin-top: 0;
-  position: relative; 
+  position: relative;
 }
 
 .car-container {
   display: flex;
-  justify-content: center; 
+  justify-content: center;
   position: relative;
 }
 
 .lamborghini {
   width: 75vh;
   position: relative;
-  top: 15vh; 
-  z-index: 1; 
+  top: 15vh;
+  z-index: 1;
 }
 
 .triangle-up {
@@ -51,23 +45,23 @@
   height: 0;
   border-left: 98.8vw solid transparent;
   border-right: 0px solid transparent;
-  border-bottom: 50px solid #237397; 
+  border-bottom: 50px solid #237397;
   position: relative;
-  top: -1.4vw; 
+  top: -1.4vw;
   z-index: 0;
 }
 
 #box {
   fill: #237397;
-  margin-top: -5px; 
+  margin-top: -5px;
   margin-bottom: 50px;
 }
 
 
 .card-container {
   display: flex;
-  flex-wrap: wrap; 
-  justify-content: center; 
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 20px;
   padding: 20px;
 }
@@ -75,11 +69,11 @@
 .card-box {
   background-color: white;
   border-radius: 10px;
-  width: 300px; 
+  width: 300px;
   box-shadow: 0 0px 8px rgba(0, 0, 0, 0.2);
   text-align: center;
   padding: 20px;
-  margin: 10px; 
+  margin: 10px;
 }
 
 .card-box img {
@@ -113,7 +107,6 @@
   color: white;
 }
 
-.submit-form{
+.submit-form {
   text-align: center;
 }
-
