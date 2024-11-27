@@ -10,6 +10,7 @@
 .navbar-container.not-home-nav {
     background-color: white;
     padding: 0;
+    box-shadow: 0px 0.3px 0.5px 0px rgba(0, 0, 0, 0.10), 0px 2px 4px 0px rgba(0, 0, 0, 0.20);
 }
 
 .navbar {
@@ -143,8 +144,8 @@
     border-radius: 3px;
 }
 
-.white{
-    color:white;
+.white {
+    color: white;
 }
 
 .user-name {
@@ -162,7 +163,7 @@
 
 .user-name:hover {
     background-color: rgb(234, 248, 255);
-    color:#237397;
+    color: #237397;
 }
 
 .dropdown-user-menu {
