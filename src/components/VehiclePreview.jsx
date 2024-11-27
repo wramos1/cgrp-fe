@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom';
 import PlaceHolderCar from '../images/placeholder-car.png';
 import { useInView } from 'react-intersection-observer';
@@ -6,14 +6,14 @@ import { useInView } from 'react-intersection-observer';
 const VehiclePreview = ({ vehicle }) => {
 
     const { ref, inView } = useInView({
-        triggerOnce: true, // Only trigger once when the image enters the viewport
-        threshold: 0.1, // 10% of the image should be in view to start loading
+        triggerOnce: true,
+        threshold: 0.1,
     });
 
     return (
         <div className='vehicle-preview-card'>
             <div className='vehicle-header'>
-                <h1 className="impact">{vehicle.year} {vehicle.make} <h1 className='impact' id="up">{vehicle.model}</h1></h1>
+                <h1 className="impact">{vehicle.year} {vehicle.make} <span className='impact' id="up">{vehicle.model}</span></h1>
             </div>
             <div className='vehicle-img-preview'>
                 <img
@@ -25,7 +25,7 @@ const VehiclePreview = ({ vehicle }) => {
                 />
             </div>
             <div className="vehicle-description">
-                <p>${vehicle.dailyRentRate} <p id="day">/day</p></p>
+                <p>${Number(vehicle.dailyRentRate).toFixed(2)} <span id="day">/day</span></p>
                 <Link to={{ pathname: `/vehicle/${vehicle.customVehicleID}` }} state={vehicle.customVehicleID}><button>View Car Details</button></Link>
             </div>
         </div>

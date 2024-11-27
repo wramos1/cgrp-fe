@@ -44,9 +44,9 @@ const PaymentForm = ({ setPaymentCard, paymentCard }) => {
 
     return (
         <div className="payment-form-section">
-            <h1 className="payment-title">
+            <h2 className="payment-title">
                 Payment Details
-            </h1>
+            </h2>
 
             <form className="payment-form">
                 <div className="payment-label-input">
