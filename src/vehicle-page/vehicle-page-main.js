@@ -3,7 +3,6 @@ import React from 'react';
 import Header from './vehicle-page-header.js';
 import Body from './vehicle-page-body.js';
 import './vehicle-page.css';
-import SearchBar from '../components/SearchBar.jsx';
 
 
 function VehicleType() {

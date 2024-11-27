@@ -26,11 +26,15 @@ const FindVehicles = () => {
         }
     };
 
-    const searchVehicles = async (searchParam) => {
-        if (searchParam) {
+    const searchVehicles = async (searchParams) => {
+        if (searchParams) {
             try {
                 setLoading(true);
-                const response = await axiosConfig.get(`/home/keyword/${searchParam}`);
+                const response = await axiosConfig.post('/home/keyword', searchParams, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
                 setVehicles(response.data);
                 sessionStorage.setItem("cachedVehicles", JSON.stringify(response.data));
             } catch (error) {
@@ -52,7 +56,11 @@ const FindVehicles = () => {
             setVehicles(JSON.parse(cachedVehicles));
             setLoading(false);
         } else if (type) {
-            searchVehicles(type);
+            searchVehicles({
+                makes: [],
+                types: [type],
+                keywords: []
+            });
         } else {
             fetchAllVehicles();
         }

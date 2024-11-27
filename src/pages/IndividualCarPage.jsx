@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import '../styles/IndividualCarPage.css';
 import { featuresMap } from '../dataTypes/Features';
@@ -7,17 +7,47 @@ import DateRangePicker from '../components/DateRangePicker';
 import PaymentForm from '../components/PaymentForm';
 import axiosConfig from '../api/axiosConfig'
 import LeaveReview from '../components/LeaveReview.jsx';
+import { toast } from 'react-toastify';
 
 const IndividualCarPage = () => {
-    const navigate = useNavigate();
-
+    const [loading, setLoading] = useState(true);
+    const [vehicle, setVehicle] = useState(null);
     const [dateRange, setDateRange] = useState({
         startDate: new Date(),
         endDate: new Date(),
     });
 
+    const [paymentCard, setPaymentCard] = useState({
+        cardNumber: "",
+        cvv: "",
+        expiryMonth: "",
+        expiryYear: "",
+        nameOnCard: ""
+    })
+
+    const navigate = useNavigate();
+
     const location = useLocation();
-    const vehicle = location.state;
+    const vehicleID = location.state;
+
+
+    useEffect(() => {
+        const fetchVehicle = async () => {
+            try {
+                setLoading(true);
+                await axiosConfig.get(`/home/${vehicleID}`)
+                    .then((res) => setVehicle(res.data))
+            } catch (error) {
+                console.log(error)
+            }
+            finally {
+                setLoading(false);
+            }
+        };
+        fetchVehicle();
+    }, [vehicleID])
+
+
 
     const displayFeatures = () => {
         return vehicle.vehicleFeatures.map((feat) => {
@@ -40,12 +70,35 @@ const IndividualCarPage = () => {
         setDateRange(range);
     };
 
+    const generateExpiryDate = (expiryMonth, expiryYear) => {
+        const month = expiryMonth.padStart(2, '0');
+        const year = `20${expiryYear}`;
+        const day = "02";
+        const expiryDate = `${year}-${month}-${day}`;
+
+        return expiryDate;
+    };
+
+
     const reserveCar = async () => {
+        if (paymentCard.cardNumber.trim() === '' || paymentCard.cvv.trim() === '' || paymentCard.expiryYear === '' || paymentCard.expiryMonth === '' || paymentCard.nameOnCard === '') {
+            toast.warn('Please input all required fields');
+            return;
+        }
+
         try {
+            const expirationDate = generateExpiryDate(paymentCard.expiryMonth, paymentCard.expiryYear);
+
             const payload = {
                 customVehicleId: vehicle.customVehicleID,
                 startDate: formatDate(dateRange.startDate),
-                endDate: formatDate(dateRange.endDate)
+                endDate: formatDate(dateRange.endDate),
+                userCard: {
+                    cardNumber: paymentCard.cardNumber,
+                    cvv: Number(paymentCard.cvv),
+                    expirationDate,
+                    nameOnCard: paymentCard.nameOnCard
+                }
             };
 
             const result = await axiosConfig.post("/reservations/reserve", payload,
@@ -55,11 +108,11 @@ const IndividualCarPage = () => {
                     }
                 });
 
-            alert(result.data)
+            toast.success(result.data)
             navigate('/profile');
 
         } catch (error) {
-            alert(error.response.data);
+            toast.error(error.response.data);
         }
     };
 
@@ -131,65 +184,70 @@ const IndividualCarPage = () => {
 
     return (
         <div id='individual-car-page-section'>
-            <Link to={"/find-vehicles"} className='back-to-search'> &#8592; Back to Vehicles</Link>
-            <div className="car-main-img">
-                <img src={vehicle.vehicleImageHostingURL} alt="car hero" />
-                <div className="is-rented-sign">
-                    <div className={`dot ${vehicle.currentlyRented ? "not-available" : "available"}`}></div>
-                    <p className={`rented-label ${vehicle.currentlyRented ? "not-available" : "available"}`}>
-                        {vehicle.currentlyRented ? "Not Available" : "Available"}
-                    </p>
-                </div>
-            </div>
-            <div className="car-content">
+            {
+                loading ?
+                    <div className="spinner"></div>
+                    :
 
-                <div className="car-details">
-                    <h2 className="car-title">
-                        {vehicle.make + " " + vehicle.model + " " + vehicle.year}
-                        <span>{vehicle.color}</span>
-                    </h2>
-                    <div className='list-of-features'>
-                        {displayFeatures()}
-                    </div>
-                    <div className="description-section">
-                        <h2 className="description-title">
-                            Description
-                        </h2>
-                        <p>
-                            {vehicle.description}
-                        </p>
-                    </div>
+                    <>
+                        <Link to={"/find-vehicles"} className='back-to-search'> &#8592; Back to Vehicles</Link><div className="car-main-img">
+                            <img src={vehicle.vehicleImageHostingURL} alt="car hero" />
+                            <div className="is-rented-sign">
+                                <div className={`dot ${vehicle.currentlyRented ? "not-available" : "available"}`}></div>
+                                <p className={`rented-label ${vehicle.currentlyRented ? "not-available" : "available"}`}>
+                                    {vehicle.currentlyRented ? "Not Available" : "Available"}
+                                </p>
+                            </div>
+                        </div><div className="car-content">
 
-                    <h2 className="review-container-title">
-                        Reviews
-                        <span>{vehicle.reviewsOfVehicle.length === 1 ? "1 review" : `${vehicle.reviewsOfVehicle.length} reviews`}</span>
-                    </h2>
-                    <div className="vehicle-review-container">
-                        {displayVehicleReviews()}
-                    </div>
+                            <div className="car-details">
+                                <h2 className="car-title">
+                                    {vehicle.make + " " + vehicle.model + " " + vehicle.year}
+                                    <span>{vehicle.color}</span>
+                                </h2>
+                                <div className='list-of-features'>
+                                    {displayFeatures()}
+                                </div>
+                                <div className="description-section">
+                                    <h2 className="description-title">
+                                        Description
+                                    </h2>
+                                    <p>
+                                        {vehicle.description}
+                                    </p>
+                                </div>
 
-                    <div className="leave-review-container">
-                        <h1 className="leave-review-title">
-                            Leave A Review
-                        </h1>
-                        <LeaveReview customVehicleID={vehicle.customVehicleID} />
-                    </div>
+                                <h2 className="review-container-title">
+                                    Reviews
+                                    <span>{vehicle.reviewsOfVehicle.length === 1 ? "1 review" : `${vehicle.reviewsOfVehicle.length} reviews`}</span>
+                                </h2>
+                                <div className="vehicle-review-container">
+                                    {displayVehicleReviews()}
+                                </div>
 
-                </div>
+                                <div className="leave-review-container">
+                                    <h1 className="leave-review-title">
+                                        Leave A Review
+                                    </h1>
+                                    <LeaveReview customVehicleID={vehicle.customVehicleID} />
+                                </div>
 
-                <div className="reservation-section">
-                    <h2 className="price">
-                        ${vehicle.dailyRentRate}
-                        <span>Daily Rent Price</span>
-                    </h2>
-                    <DateRangePicker onDatesChange={handleDatesChange} />
-                    <PaymentForm />
-                    <button className="reserve" onClick={() => reserveCar()}>
-                        Reserve
-                    </button>
-                </div>
-            </div>
+                            </div>
 
+                            <div className="reservation-section">
+                                <h2 className="price">
+                                    ${Number(vehicle.dailyRentRate).toFixed(2)}
+                                    <span>Daily Rent Price</span>
+                                </h2>
+                                <DateRangePicker onDatesChange={handleDatesChange} />
+                                <PaymentForm setPaymentCard={setPaymentCard} paymentCard={paymentCard} />
+                                <button className="reserve" onClick={() => reserveCar()}>
+                                    Reserve
+                                </button>
+                            </div>
+                        </div>
+                    </>
+            }
         </div>
     );
 }

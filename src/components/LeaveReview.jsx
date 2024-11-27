@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import axiosConfig from '../api/axiosConfig';
 import { useNavigate } from 'react-router-dom';
 import '../styles/LeaveReview.css';
+import { toast } from 'react-toastify';
 
 const LeaveReview = ({ customVehicleID }) => {
 
@@ -15,7 +16,7 @@ const LeaveReview = ({ customVehicleID }) => {
         if (rating === '' || regex.test(rating)) {
             const numericValue = parseFloat(rating);
             if (numericValue > 5 || numericValue < 0) {
-                alert('Value must be between 0.0 and 5.0');
+                toast.error('Value must be between 0.0 and 5.0');
             }
             setReviewRating(rating)
         }
@@ -24,12 +25,12 @@ const LeaveReview = ({ customVehicleID }) => {
     const leaveReview = async (e) => {
         e.preventDefault();
         if (reviewBody.trim() === '') {
-            alert("Review body is required");
+            toast.error("Review body is required");
             return;
         }
 
         const payload = {
-            reviewRating,
+            reviewRating: Number(reviewRating),
             reviewBody,
             customVehicleID
         };
@@ -41,7 +42,9 @@ const LeaveReview = ({ customVehicleID }) => {
                     'Content-Type': 'application/json',
                 },
             })
-            alert('Review Left');
+            setReviewBody('')
+            setReviewRating('')
+            toast.success('Thank you for leaving us a review!');
             navigate('/profile');
 
         } catch (error) {
@@ -54,23 +57,41 @@ const LeaveReview = ({ customVehicleID }) => {
 
 
     return (
-        <form className='review-form' action="submit">
+        <form className='review-form' action="submit" onSubmit={(e) => leaveReview(e)}>
             <div className="review-form-label-input">
-                <label htmlFor="rating-input">Rating</label>
+                <label htmlFor="rating">Rating</label>
                 <input
-                    id="rating-input"
-                    type="text"
+                    className='rating-input'
+                    name='rating'
+                    type="number"
                     value={reviewRating}
                     onChange={(e) => handleRatingChange(e.target.value)}
-                    placeholder="Enter rating (0.0 and 5.0)"
+                    placeholder="0.0"
+                    required
+                    step={`${reviewRating % 1 === 0 ? '1' : '0.1'}`}
+                    onKeyDown={(e) => {
+                        if (e.key === 'e' || e.key === '+' || e.key === '-') {
+                            e.preventDefault();
+                        }
+                    }}
                 />
             </div>
             <div className="review-form-label-input">
                 <label htmlFor="review">Review</label>
-                <input className='review-form-body' type="text" name='review' maxLength={200} />
+                <textarea
+                    required
+                    className='review-form-body'
+                    type="text"
+                    name='review'
+                    maxLength={120}
+                    draggable="false"
+                    placeholder='Please share your experience with us'
+                    value={reviewBody}
+                    onChange={(e) => setReviewBody(e.target.value)}
+                />
             </div>
             <button className="submit-review">
-                Submit
+                Submit Review
             </button>
         </form>
     );

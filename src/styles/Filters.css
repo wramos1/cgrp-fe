@@ -102,14 +102,17 @@
     font-size: 15px;
     gap: 10%;
     width: 100%;
+    cursor: pointer;
 }
 
 .checkbox-for-filter input {
     margin-left: 10px;
+    cursor: pointer;
 }
 
 .checkbox-for-filter label {
     font-weight: 400;
+    cursor: pointer;
 }
 
 .search-all-filters-button {

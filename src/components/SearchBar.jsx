@@ -12,8 +12,6 @@ const SearchBar = () => {
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
-        console.log('Search query:', query);
-
         navigate('/find-vehicles', { state: query });
     };
 

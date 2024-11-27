@@ -7,14 +7,11 @@ import sedan from '../images/sedan.png';
 import coupe from '../images/coupe.png';
 import luxury from '../images/luxury.png';
 import classic from '../images/classic.png';
-import SearchBar from '../components/SearchBar';
 
-
-const Body = ({ }) => {
+const Body = () => {
 
   return (
     <div>
-      <SearchBar />
       <div className="card-container">
         <div className="card-box">
           <img src={truck} alt="Truck" />

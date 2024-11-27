@@ -1,7 +1,6 @@
 import React from 'react';
 import './vehicle-page.css';
 import lambo from '../images/lambo.png'
-import background from '../images/background.png'
 
 const Header = () => {
   return (
@@ -12,6 +11,7 @@ const Header = () => {
         <div className="car-container">
           <img
             src={lambo}
+            alt='hero of lamborghini'
             className="lamborghini"
           />
         </div>

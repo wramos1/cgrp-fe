@@ -81,11 +81,30 @@ const Filters = ({ searchAllFilters }) => {
         })
     };
 
-    const searchWithFilters = () => {
+    function isEmpty(obj) {
+        return Object.keys(obj).length === 0;
+    }
+
+    const searchWithFilters = (e) => {
+        e.preventDefault();
         let keywords = keyword.toLowerCase().split(' ');
-        let filterArr = [keywords, makeFilters, typeFilters].flat();
-        let uniqueArr = [...new Set(filterArr)].join(' ')
-        searchAllFilters(uniqueArr);
+        const filtersMap = {};
+        const checkboxes = document.querySelectorAll('.checkbox-for-filter input[type="checkbox"]');
+        checkboxes.forEach((checkbox) => {
+            if (checkbox.checked === true) {
+                filtersMap[checkbox.id] = 1;
+            }
+        });
+
+        if (isEmpty(filtersMap) === false) {
+            keywords = keywords.filter((word) => filtersMap[word] !== 1);
+        }
+        let filterObj = {
+            makes: makeFilters,
+            types: typeFilters,
+            keywords
+        };
+        searchAllFilters(filterObj);
     };
 
 
@@ -96,7 +115,7 @@ const Filters = ({ searchAllFilters }) => {
                 <h3 className='filters-title'>
                     Filter by:
                 </h3>
-                <div className="filters">
+                <form action='submit' className="filters" onSubmit={(e) => searchWithFilters(e)}>
                     <div className="filters-list">
                         <div className="filter-by-keyword">
                             <label htmlFor="">Keyword</label>
@@ -131,10 +150,10 @@ const Filters = ({ searchAllFilters }) => {
                             </div>
                         </div>
                     </div>
-                    <button className="search-all-filters-button" onClick={() => searchWithFilters()}>
+                    <button className="search-all-filters-button">
                         Search
                     </button>
-                </div>
+                </form>
 
             </div>
 

@@ -6,6 +6,7 @@ import SecondaryLogo from '../images/Secondary_Logo.png';
 import '../styles/Navbar.css';
 import UserDropDownIcon from '../icons/UserDropDownIcon';
 import axiosConfig from '../api/axiosConfig';
+import { toast } from 'react-toastify';
 
 const Navbar = () => {
 
@@ -31,7 +32,7 @@ const Navbar = () => {
             localStorage.clear();
             sessionStorage.clear();
             navigate('/');
-            alert(result.data.message)
+            toast.success(result.data.message)
         } catch (error) {
             console.log(error)
         }
@@ -59,7 +60,7 @@ const Navbar = () => {
                         </li>
                         <li className='nav-item'>
                             <Link to={'/vehicles'} className='nav-link'>
-                                TYPES
+                                VEHICLE TYPES
                             </Link>
                         </li>
                         <li className={`nav-item ${isHome ? '' : 'not-home-nav'}`}>
@@ -79,7 +80,7 @@ const Navbar = () => {
 
                             <p className="user-name" onClick={() => setUserNavOpened(!userNavOpened)}>
                                 {user.charAt(0).toUpperCase() + user.substring(1, user.length).toLowerCase()}
-                                <UserDropDownIcon style={`${userNavOpened ? 'flipped' : ''}`} />
+                                <UserDropDownIcon style={`${userNavOpened ? 'flipped' : ''}`} className="white"/>
                             </p>
                             <div className={`dropdown-user-menu ${userNavOpened ? 'open' : ''}`}>
                                 <ul>

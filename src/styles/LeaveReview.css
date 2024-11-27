@@ -2,9 +2,72 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+    padding: 20px 15px;
+    background-color: white;
+    box-shadow: -1px 3px 19px 1px rgba(150, 150, 150, 0.5);
+    width: 65%;
 }
 
 .review-form-label-input {
     display: flex;
     flex-direction: column;
+    padding: 5px 0px;
+}
+
+.review-form-label-input label {
+    color: var(--main-color);
+}
+
+.rating-input {
+    font-size: 15px;
+    color: black;
+    width: 80px;
+    height: 25px;
+    padding: 5px 2px 0 2px;
+    font-family: 'Roboto', sans-serif;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid;
+}
+
+.rating-input::placeholder {
+    font-size: 15px;
+}
+
+.rating-input:focus {
+    border-bottom: 2px solid var(--main-color);
+}
+
+.review-form-body {
+    outline: none;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    resize: none;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid;
+    transition: 1s all ease-in;
+    padding: 5px 0 5px 0;
+    font-size: 15px;
+    color: black;
+    -webkit-font-smoothing: antialiased;
+}
+
+.submit-review {
+    margin: 0 auto;
+    margin-left: 0;
+    background-color: white;
+    color: var(--main-color);
+    padding: 12px 15px;
+    border: 1px solid var(--main-color);
+    font-family: 'Roboto', sans-serif;
+    cursor: pointer;
+    font-size: 15px;
+    transition: 1s all;
+}
+
+.submit-review:hover {
+    background-color: var(--main-color);
+    color: white;
 }

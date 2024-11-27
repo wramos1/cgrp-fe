@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axiosConfig from '../api/axiosConfig';
 import Background from '../images/test-bg.jpg'
+import { toast } from 'react-toastify';
+
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -12,7 +14,6 @@ function Login() {
   useEffect(() => {
     const user = localStorage.getItem('user');
     if (user) {
-      alert("Logged in already");
       navigate('/');
     }
 
@@ -22,7 +23,7 @@ function Login() {
   const loginUser = async (e) => {
     e.preventDefault();
     if (username.trim() === '' || password.trim() === '') {
-      alert("Username is required");
+      toast.error("Username is required");
       return;
     }
 
@@ -38,16 +39,15 @@ function Login() {
         },
       })
 
-      console.log('Login successful', result.data.roles[0].authority)
       localStorage.setItem('user', username);
       localStorage.setItem('auth', result.data.roles[0].authority)
-      alert('Success');
+      toast.success('Successfully logged in');
       navigate('/')
 
     } catch (error) {
       if (error.response) {
         if (error.response.status === 401) {
-          alert('Authentication failed. Please check your credentials.')
+          toast.error('Authentication failed. Please check your credentials.');
         }
         else {
           console.error('Error', error.message)
@@ -81,7 +81,7 @@ function Login() {
               <label htmlFor="pwd">
                 Password:
               </label>
-              <input required value={password} id="pwd" name="password" onChange={(e) => setPassword(e.target.value)} />
+              <input required value={password} type="password" id="pwd" name="password" onChange={(e) => setPassword(e.target.value)} />
             </div>
 
             <input disabled={loading} type="submit" value="Log In" className="button" />
