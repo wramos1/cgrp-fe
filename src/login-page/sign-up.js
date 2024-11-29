@@ -9,7 +9,7 @@ function Signup() {
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setconfirmPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -25,7 +25,13 @@ function Signup() {
   const loginUser = async (e) => {
     e.preventDefault();
     if (username.trim() === '' || password.trim() === '') {
-      toast.error("Username is required");
+      toast.error("Username and Password Required");
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      toast.error("Passwords do not match");
       return;
     }
 
@@ -63,7 +69,7 @@ function Signup() {
     setEmail('');
     setUsername('');
     setPassword('');
-    setconfirmPassword('');
+    setConfirmPassword('');
   }
 
   return (
@@ -111,16 +117,17 @@ function Signup() {
               <label htmlFor="confirm">
                 Confirm Password:
               </label>
-              <input required value={confirmPassword} type="password"id="confirm" name="username" onChange={(e) => setconfirmPassword(e.target.value)} />
+              <input required value={confirmPassword} type="password" id="confirm" name="username" onChange={(e) => setConfirmPassword(e.target.value)} />
             </div>
 
-            <input disabled={loading} type="submit" value="Sign Up" className="button" />
+            <input type="submit" value="Sign Up" className="button" />
 
             <p className='login-form-catch'>
               Already have an account? {"  "}
               <Link to={"/login"}>Login</Link>
             </p>
           </form>
+          {loading ? <div className='loading-call-spinner'></div> : null}
         </div>
       </div>
     </div>

@@ -93,6 +93,8 @@ const LeaveReview = ({ customVehicleID }) => {
             <button className="submit-review">
                 Submit Review
             </button>
+
+            {loading ? <div className='loading-call-spinner'></div> : null}
         </form>
     );
 }
