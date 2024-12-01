@@ -77,7 +77,7 @@ const FindVehicles = () => {
                     :
                     <div className="vehicle-list-container">
                         <p className='vehicle-list-results'>
-                            {vehicles.length === 1 ? `${vehicles.length} result` : `${vehicles.length} results`}
+                            {vehicles.length === 0 ? 'No results found' : vehicles.length === 1 ? `${vehicles.length} result` : `${vehicles.length} results`}
                         </p>
                         <VehicleList vehicles={vehicles} />
                     </div>

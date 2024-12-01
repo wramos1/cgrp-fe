@@ -74,7 +74,7 @@ const IndividualCarPage = () => {
     const generateExpiryDate = (expiryMonth, expiryYear) => {
         const month = expiryMonth.padStart(2, '0');
         const year = `20${expiryYear}`;
-        const day = "02";
+        const day = "30";
         const expiryDate = `${year}-${month}-${day}`;
 
         return expiryDate;
