@@ -56,10 +56,11 @@ const FindVehicles = () => {
             setVehicles(JSON.parse(cachedVehicles));
             setLoading(false);
         } else if (type) {
+            let params = type.split(' ');
             searchVehicles({
                 makes: [],
-                types: [type],
-                keywords: []
+                types: [],
+                keywords: [...params]
             });
         } else {
             fetchAllVehicles();
