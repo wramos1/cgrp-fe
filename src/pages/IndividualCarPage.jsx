@@ -96,12 +96,14 @@ const IndividualCarPage = () => {
                 startDate: formatDate(dateRange.startDate),
                 endDate: formatDate(dateRange.endDate),
                 userCard: {
-                    cardNumber: paymentCard.cardNumber,
+                    cardNumber: paymentCard.cardNumber.replace(/\s/g, ''),
                     cvv: Number(paymentCard.cvv),
                     expirationDate,
                     nameOnCard: paymentCard.nameOnCard
                 }
             };
+
+            console.log(payload);
 
             const result = await axiosConfig.post("/reservations/reserve", payload,
                 {
