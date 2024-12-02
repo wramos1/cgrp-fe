@@ -10,6 +10,7 @@ import LeaveReview from '../components/LeaveReview.jsx';
 import { toast } from 'react-toastify';
 
 const IndividualCarPage = () => {
+    const [apiLoading, setApiLoading] = useState(false);
     const [loading, setLoading] = useState(true);
     const [vehicle, setVehicle] = useState(null);
     const [dateRange, setDateRange] = useState({
@@ -73,7 +74,7 @@ const IndividualCarPage = () => {
     const generateExpiryDate = (expiryMonth, expiryYear) => {
         const month = expiryMonth.padStart(2, '0');
         const year = `20${expiryYear}`;
-        const day = "02";
+        const day = "30";
         const expiryDate = `${year}-${month}-${day}`;
 
         return expiryDate;
@@ -87,6 +88,7 @@ const IndividualCarPage = () => {
         }
 
         try {
+            setApiLoading(true);
             const expirationDate = generateExpiryDate(paymentCard.expiryMonth, paymentCard.expiryYear);
 
             const payload = {
@@ -113,6 +115,9 @@ const IndividualCarPage = () => {
 
         } catch (error) {
             toast.error(error.response.data);
+        }
+        finally {
+            setApiLoading(false);
         }
     };
 
@@ -244,6 +249,7 @@ const IndividualCarPage = () => {
                                 <button className="reserve" onClick={() => reserveCar()}>
                                     Reserve
                                 </button>
+                                {apiLoading ? <div className='loading-call-spinner'></div> : null}
                             </div>
                         </div>
                     </>

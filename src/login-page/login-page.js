@@ -84,13 +84,14 @@ function Login() {
               <input required value={password} type="password" id="pwd" name="password" onChange={(e) => setPassword(e.target.value)} />
             </div>
 
-            <input disabled={loading} type="submit" value="Log In" className="button" />
+            <input type="submit" value="Log In" className="button" />
 
             <p className='login-form-catch'>
               Don't have an account? {"  "}
               <Link to={'/signup'}>Signup</Link>
             </p>
           </form>
+          {loading ? <div className='loading-call-spinner'></div> : null}
         </div>
       </div>
     </div>
