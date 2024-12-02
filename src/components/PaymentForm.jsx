@@ -54,6 +54,7 @@ const PaymentForm = ({ setPaymentCard, paymentCard }) => {
                         Name on Card
                     </label>
                     <input
+                        autoComplete='off'
                         required
                         type="text"
                         name="name-on-card"
@@ -68,6 +69,7 @@ const PaymentForm = ({ setPaymentCard, paymentCard }) => {
                         Credit Card Number
                     </label>
                     <input
+                        autoComplete='off'
                         required
                         type="text"
                         name="cc-num"
@@ -84,6 +86,7 @@ const PaymentForm = ({ setPaymentCard, paymentCard }) => {
                         </label>
                         <div className="exp-selects">
                             <select
+                                autoComplete='off'
                                 required
                                 className="exp"
                                 value={paymentCard['expiryMonth']}
@@ -134,6 +137,7 @@ const PaymentForm = ({ setPaymentCard, paymentCard }) => {
                             CVV
                         </label>
                         <input
+                            autoComplete='off'
                             required
                             maxLength={4}
                             placeholder="123"

@@ -74,14 +74,14 @@ function Login() {
               <label htmlFor="username">
                 Username:
               </label>
-              <input required value={username} type="text" id="username" name="username" onChange={(e) => setUsername(e.target.value)} />
+              <input autoComplete='off' required value={username} type="text" id="username" name="username" onChange={(e) => setUsername(e.target.value)} />
             </div>
 
             <div className='login-label-input'>
               <label htmlFor="pwd">
                 Password:
               </label>
-              <input required value={password} type="password" id="pwd" name="password" onChange={(e) => setPassword(e.target.value)} />
+              <input autoComplete='off' required value={password} type="password" id="pwd" name="password" onChange={(e) => setPassword(e.target.value)} />
             </div>
 
             <input type="submit" value="Log In" className="button" />

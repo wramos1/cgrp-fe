@@ -84,6 +84,7 @@ function Signup() {
                 Email:
               </label>
               <input
+                autoComplete='off'
                 required
                 value={email}
                 type="text"
@@ -97,7 +98,7 @@ function Signup() {
                 Username:
               </label>
 
-              <input required value={username} type="text" id="username" name="username" onChange={(e) => setUsername(e.target.value)} />
+              <input autoComplete='off' required value={username} type="text" id="username" name="username" onChange={(e) => setUsername(e.target.value)} />
             </div>
 
             <div className='login-label-input'>
@@ -105,6 +106,7 @@ function Signup() {
                 Password:
               </label>
               <input
+                autoComplete='off'
                 required
                 value={password}
                 type="password"

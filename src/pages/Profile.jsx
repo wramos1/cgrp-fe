@@ -88,15 +88,14 @@ const ManagerView = () => {
     };
 
     const handleCheckinSubmit = async (e) => {
-        e.preventDefault(); // Prevent the default form submission
-        const lowercasedCheckin = checkin.toLowerCase(); // Ensure the ID is lowercased
+        e.preventDefault(); 
+        const lowercasedCheckin = checkin.toLowerCase(); 
         try {
             const response = await axiosConfig.post(`/reservations/${lowercasedCheckin}`, { customReservationID: lowercasedCheckin }, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
             });
-            console.log(response.data);
             fetchReservations();
         } catch (error) {
             console.log(error.response ? error.response.data : "Error checking in vehicle");
@@ -244,10 +243,8 @@ const UserView = () => {
 
 
     const cancelReservation = async (customReservationID1) => {
-        console.log(typeof customReservationID1);
         try {
             const response = await axiosConfig.post(`/reservations/cancel/${customReservationID1}`);
-                console.log(response.data);
             fetchReservations();
         } catch (error) {
             console.error(error);
