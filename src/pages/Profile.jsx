@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import '../styles/Profile.css';
 import axiosConfig from "../api/axiosConfig";
+import axios from 'axios';
 import pfp from "../images/pfp.jpg"
 import userpfp from "../images/userpfp.png"
 import Star from "../components/Star";
@@ -59,6 +60,7 @@ const ManagerView = () => {
     const [monthlyRevenue, setMonthlyRevenue] = useState(0)
     const [review, setReview] = useState([])
     const [reservations, setReservations] = useState(0)
+    const [checkin, setCheckinId] = useState(""); // State for the form input
 
     const fetchMonthlyRevenue = async () => {
         try {
@@ -83,6 +85,22 @@ const ManagerView = () => {
             setReservations(fetch.data)
         } catch (error) {
             console.log(error);
+        }
+    };
+
+    const handleCheckinSubmit = async (e) => {
+        e.preventDefault(); // Prevent the default form submission
+        const lowercasedCheckin = checkin.toLowerCase(); // Ensure the ID is lowercased
+        try {
+            const response = await axiosConfig.post(`/reservations/${lowercasedCheckin}`, { customReservationID: lowercasedCheckin }, {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            console.log(response.data);
+            fetchReservations();
+        } catch (error) {
+            console.log(error.response ? error.response.data : "Error checking in vehicle");
         }
     };
 
@@ -112,6 +130,7 @@ const ManagerView = () => {
         fetchMonthlyRevenue();
         fetchReview();
         fetchReservations();
+        setCheckinId("");
     }, [])
 
     return (
@@ -120,12 +139,24 @@ const ManagerView = () => {
                 <div class="profile-left">
                     <img src={pfp} alt="Profile Picture" class="profile-picture"></img>
                     <h2 class="profile-name">Manager Dashboard</h2>
-                    <p class="profile-role">Here are your management tools and insights.</p>
+                    <br></br>
                     <div class="profile-details">
                         <p><strong>Title:</strong> CEO</p>
                         <p><strong>Location:</strong> CSUN</p>
                         <p><strong>Monthly Revenue:</strong><p class="revenue"> ${monthlyRevenue}</p></p>
                         <p><strong>Lifetime Revenue:</strong><p class="revenue"> ${review.totalRentalRevenue}</p></p>
+                        <br></br>
+                        <form onSubmit={handleCheckinSubmit}>
+                            <p><strong>Check Vehicle In:</strong></p>
+                            <input
+                                type="text"
+                                placeholder="Enter ReservationID"
+                                value={checkin}
+                                onChange={(e) => setCheckinId(e.target.value)}
+                                required
+                            />
+                            <button type="submit" className="cancelbutton">Submit</button>
+                        </form>
                     </div>
                 </div>
                 <div class="profile-right">
@@ -212,6 +243,23 @@ const UserView = () => {
         return stars;
     }
 
+
+    const cancelReservation = async (customReservationID) => {
+        try {
+            const response = await axios.post(`/reservations/cancel/${customReservationID}`, { customReservationID: customReservationID },
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                });
+                console.log(response.data);
+            fetchReservations();
+        } catch (error) {
+            console.error(`Error cancelling reservation ${customReservationID}:`, error);
+            
+        }
+    };
+
     useEffect(() => {
         fetchReview();
         fetchReservations();
@@ -238,7 +286,10 @@ const UserView = () => {
                                     <p><strong>Car: </strong>{reservations.vehicle.make} {reservations.vehicle.model} </p>
                                     <p><strong>Time: </strong> {reservations.startDate} to {reservations.endDate}</p>
                                     <p><strong>Daily Rate: </strong> <p id="revenue">${reservations.chargeAmount}</p></p>
-                                    <br></br>
+                                    <button onClick={() => cancelReservation(String(reservations.customReservationID))} className="cancelbutton">
+                                    Cancel Reservation
+                                    </button>
+                                    <br></br><br></br>
                                 </div>
                             ))
                         ) : (

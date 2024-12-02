@@ -117,3 +117,24 @@
         color: green !important;
         display: inline;
 }
+
+.cancelbutton{
+        padding: 3px 10px;
+        font-size: .75rem;
+        background-color: #fff;
+        border: 1px solid #237397;
+        color: #237397;
+        cursor: pointer;
+        font-family: 'Arial Narrow Bold', sans-serif;
+        margin-top: 2px;
+        margin-left: 1px;
+        border-radius: 2px;
+        transition: background-color 0.3s ease;
+}
+
+.cancelbutton:hover {
+    background-color: #237397;
+    color: white;
+  }
+
+  
