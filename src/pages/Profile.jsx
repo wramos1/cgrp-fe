@@ -280,7 +280,7 @@ const UserView = () => {
                     <h2 className="profile-name">User Dashboard</h2>
                     <br></br>
                     <div className="profile-details">
-                        <p><strong>Account Created:</strong> November 10th, 2023</p>
+                        <p><strong>Member Since:</strong> December 4th, 2024</p>
                         <p><strong>Location:</strong> CSUN</p>
                     </div>
                 </div>
