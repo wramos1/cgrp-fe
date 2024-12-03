@@ -106,7 +106,8 @@ const ManagerView = () => {
             fetchReservations();
             setCheckinId("");
         } catch (error) {
-            console.log(error.response ? error.response.data : "Error checking in vehicle");
+            toast.error('Invalid Reservation ID');
+            setCheckinId("");
         }
     };
 
