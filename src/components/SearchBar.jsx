@@ -22,6 +22,7 @@ const SearchBar = () => {
                 <input
                     name='search'
                     type="text"
+                    autoComplete='off'
                     value={query}
                     onChange={handleInputChange}
                     placeholder="Search..."

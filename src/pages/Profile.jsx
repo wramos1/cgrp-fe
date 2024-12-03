@@ -4,6 +4,7 @@ import axiosConfig from "../api/axiosConfig";
 import pfp from "../images/pfp.jpg"
 import userpfp from "../images/userpfp.png"
 import Star from "../components/Star";
+import { toast } from 'react-toastify';
 
 const Profile = () => {
     const [isManager, setIsManager] = useState(false);
@@ -87,6 +88,11 @@ const ManagerView = () => {
         }
     };
 
+    const formatDate = (dateString) => {
+        const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+        return new Intl.DateTimeFormat('en-US', options).format(new Date(dateString));
+    };
+
     const handleCheckinSubmit = async (e) => {
         e.preventDefault(); 
         const lowercasedCheckin = checkin.toLowerCase(); 
@@ -96,7 +102,9 @@ const ManagerView = () => {
                     'Content-Type': 'application/json',
                 },
             });
+            toast.success(`Successfully checked in ${checkin}`);
             fetchReservations();
+            setCheckinId("");
         } catch (error) {
             console.log(error.response ? error.response.data : "Error checking in vehicle");
         }
@@ -128,7 +136,7 @@ const ManagerView = () => {
         fetchMonthlyRevenue();
         fetchReview();
         fetchReservations();
-        setCheckinId("");
+        setCheckinId();
     }, [])
 
     return (
@@ -164,7 +172,7 @@ const ManagerView = () => {
                             reservations.map((reservations) => (
                                 <div key={reservations.customReservationID}>
                                     <p><strong>Car: </strong>{reservations.vehicle.make} {reservations.vehicle.model} </p>
-                                    <p><strong>Time: </strong> {reservations.startDate} to {reservations.endDate}</p>
+                                    <p><strong>Time: </strong> {formatDate(reservations.startDate)} to {formatDate(reservations.endDate)}</p>
                                     <p><strong>Daily Rate: </strong> <p id="revenue">${reservations.chargeAmount}</p></p>
                                     <br></br>
                                 </div>
@@ -245,6 +253,7 @@ const UserView = () => {
     const cancelReservation = async (customReservationID1) => {
         try {
             const response = await axiosConfig.post(`/reservations/cancel/${customReservationID1}`);
+            toast.success(`Successfully canceled reservation`);
             fetchReservations();
         } catch (error) {
             console.error(error);
