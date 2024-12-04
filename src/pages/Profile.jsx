@@ -150,8 +150,8 @@ const ManagerView = () => {
                     <div class="profile-details">
                         <p><strong>Title:</strong> CEO</p>
                         <p><strong>Location:</strong> CSUN</p>
-                        <p><strong>Monthly Revenue:</strong><p class="revenue"> ${monthlyRevenue}</p></p>
-                        <p><strong>Lifetime Revenue:</strong><p class="revenue"> ${review.totalRentalRevenue}</p></p>
+                        <p><strong>Pending Revenue:</strong><p class="revenue"> ${Number(monthlyRevenue).toFixed(2)}</p></p>
+                        <p><strong>Lifetime Revenue:</strong><p class="revenue"> ${Number(review.totalRentalRevenue).toFixed(2)}</p></p>
                         <br></br>
                         <form onSubmit={handleCheckinSubmit}>
                             <p><strong>Check Vehicle In:</strong></p>
@@ -174,7 +174,7 @@ const ManagerView = () => {
                                 <div key={reservations.customReservationID}>
                                     <p><strong>Car: </strong>{reservations.vehicle.make} {reservations.vehicle.model} </p>
                                     <p><strong>Time: </strong> {formatDate(reservations.startDate)} to {formatDate(reservations.endDate)}</p>
-                                    <p><strong>Daily Rate: </strong> <p id="revenue">${reservations.chargeAmount}</p></p>
+                                    <p><strong>Total Charge: </strong> <p id="revenue">${Number(reservations.chargeAmount).toFixed(2)}</p></p>
                                     <br></br>
                                 </div>
                             ))
@@ -292,7 +292,7 @@ const UserView = () => {
                                 <div key={reservations.customReservationID}>
                                     <p><strong>Car: </strong>{reservations.vehicle.make} {reservations.vehicle.model} </p>
                                     <p><strong>Time: </strong> {formatDate(reservations.startDate)} to {formatDate(reservations.endDate)}</p>
-                                    <p><strong>Daily Rate: </strong> <p id="revenue">${reservations.chargeAmount}</p></p>
+                                    <p><strong>Total Charge: </strong> <p id="revenue">${reservations.chargeAmount}</p></p>
                                     <button onClick={() => cancelReservation(reservations.customReservationID)} className="cancelbutton">
                                     Cancel Reservation
                                     </button>
